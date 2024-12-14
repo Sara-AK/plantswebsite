@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <!-- Mirrored from iideainformatics.it/html/devgalaxy/devgren/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Aug 2024 06:53:09 GMT -->
 
 <head>
@@ -25,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
     <!-- Style css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
 </head>
 
 
@@ -44,38 +45,12 @@
 
     <!-- Header area start here -->
     <header class="header header-five">
-        <div class="header-top d-none d-lg-block">
-            <div class="container">
-                <div class="header-top-wrp">
-                    <div class="logo-menu">
-                        <a href="index-2.html" class="logo">
-                            <img src="assets/images/logo/logo.svg" alt="logo">
-                        </a>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <ul class="info">
-                            <li><i class="fa-solid fa-paper-plane"></i> <a href="#0">info.company@gmail.com</a>
-                            </li>
-                            <li class="bor-left ms-4 ps-4"><i class="fa-solid fa-location-dot"></i> <a href="#0">85
-                                    Ketch
-                                    Harbour RoadBensalem, PA 19020</a>
-                            </li>
-                        </ul>
-                        <ul class="link-info ml-65">
-                            <li class="bor-right"><a href="#0"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li class="bor-right"><a href="#0"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li class="bor-right"><a href="#0"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            <li><a href="#0"><i class="fa-brands fa-youtube"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="header-section">
             <div class="container">
                 <div class="header-wrapper">
+                    <!-- Replace Pro icon with Free icon -->
                     <div class="side-bars d-none d-xl-block">
-                        <i id="openButton" class="text-white fa-light fa-bars-sort"></i>
+                        <i id="openButton" class="text-white fa-solid fa-bars"></i>
                     </div>
                     <div class="logo-menu d-block d-xl-none">
                         <a href="index-2.html" class="logo">
@@ -89,92 +64,17 @@
                     </div>
                     <ul class="main-menu">
                         <li>
-                            <a class="text-white" href="#">Dashboard <i class="fas fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="index-2.html">Dashboard One</a></li>
-                                <li><a href="index-3.html">Dashboard Two</a></li>
-                            </ul>
+                            <a class="text-white" href="#">About Us</a>
                         </li>
                         <li>
-                            <a class="text-white" href="#">About Us <i class="fas fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="about.html">About One</a></li>
-                                <li><a href="about-2.html">About Two</a></li>
-                            </ul>
+                            <a class="text-white" href="#">Services</a>
                         </li>
-                        <li>
-                            <a class="text-white" href="#">Services <i class="fas fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="plantproducts/1">Service One</a></li>
-                                <li><a href="service-2.html">Service Two</a></li>
-                                <li><a href="service-single.html">Service Details</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a id="mega-menu-btn" class="text-white" href="#">Pages <i
-                                    class="fas fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li class="d-block d-xl-none"><a href="project.html">Our Project 01</a></li>
-                                <li class="d-block d-xl-none"><a href="project-2.html">Our Project 02</a></li>
-                                <li class="d-block d-xl-none"><a href="project-single.html">Project Details</a></li>
-                                <li class="d-block d-xl-none"><a href="donation.html">Donation 01</a></li>
-                                <li class="d-block d-xl-none"><a href="donation-2.html">Donation 02</a></li>
-                                <li class="d-block d-xl-none"><a href="donation-single.html">Donation Details</a></li>
-                                <li class="d-block d-xl-none"><a href="event.html">Events 01</a></li>
-                                <li class="d-block d-xl-none"><a href="event-2.html">Events 01</a></li>
-                                <li class="d-block d-xl-none"><a href="event-single.html">Events Details</a></li>
-                                <li class="d-block d-xl-none"><a href="team.html">Our Teams 01</a></li>
-                                <li class="d-block d-xl-none"><a href="team-2.html">Our Teams 02</a></li>
-                                <li class="d-block d-xl-none"><a href="team-single.html">Our Teams Details</a></li>
-                                <li class="d-block d-xl-none"><a href="faq.html">FAQ</a></li>
-                                <li class="d-block d-xl-none"><a href="login.html">Login / Register</a></li>
-                                <li class="d-block d-xl-none"><a href="error.html">404 Error</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="text-white" href="#">Blog <i class="fas fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li class="sub_menu_wrp d-none d-xl-block"><a href="#">Blog Grid <i
-                                            class="fas fa-chevron-right float-end"></i></a>
-                                    <ul class="sub_sub_menu">
-                                        <li><a href="blog-2.html">2 Columns</a></li>
-                                        <li><a href="blog-3.html">3 Columns</a></li>
-                                    </ul>
-                                </li>
-                                <li class="d-block d-xl-none"><a href="blog-2.html">Blog Grid One</a></li>
-                                <li class="d-block d-xl-none"><a href="blog-3.html">Blog Grid Two</a></li>
-                                <li class="sub_menu_wrp d-none d-xl-block"><a href="#">Blog Standard <i
-                                            class="fas fa-chevron-right float-end"></i></a>
-                                    <ul class="sub_sub_menu">
-                                        <li><a href="blog-left.html">Left SideBar</a></li>
-                                        <li><a href="blog.html">Right SideBar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="d-block d-xl-none"><a href="blog.html">Blog Standard One</a></li>
-                                <li class="d-block d-xl-none"><a href="blog-left.html">Blog Standard Two</a></li>
-                                <li class="sub_menu_wrp d-none d-xl-block"><a href="#">Blog Details <i
-                                            class="fas fa-chevron-right float-end"></i></a>
-                                    <ul class="sub_sub_menu">
-                                        <li><a href="blog-single-left.html">Left SideBar</a></li>
-                                        <li><a href="blog-single.html">Right SideBar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="d-block d-xl-none"><a href="blog-single.html">Blog Details</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a class="text-white" href="contact.html">Contact Us</a>
                         </li>
                         <li class="menu-btn">
-                            <a href="contact.html"><span>Get a quote</span> <i
-                                    class="fa-solid fa-angles-right"></i></a>
-                        </li>
-                        <li class="menu_info ms-0">
-                            <i class="fa-solid call_ico fa-phone-volume"></i>
-                            <div class="call_info">
-                                <span>Call Any Time</span>
-                                <a class="d-block p-0" href="tel:+022659302003">+02 2659 302 003</a>
-                            </div>
+                            <a href="contact.html"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
                         </li>
                     </ul>
                     <!-- Mega menu area start here -->
@@ -241,6 +141,7 @@
             </div>
         </div>
     </header>
+
     <!-- Header area end here -->
 
     <!-- Sidebar area start here -->
@@ -285,8 +186,10 @@
                                 <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
                                 </h1>
                                 <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp"
-                                    data-delay="1.8s"><span>Discover with us</span> <i
-                                        class="fa-solid fa-angles-right"></i></a>
+                                    data-delay="1.8s">
+                                    <span>Discover with us</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -298,8 +201,10 @@
                                 <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
                                 </h1>
                                 <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp"
-                                    data-delay="1.8s"><span>Discover
-                                        with us</span> <i class="fa-solid fa-angles-right"></i></a>
+                                    data-delay="1.8s">
+                                    <span>Discover with us</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -311,65 +216,28 @@
                                 <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
                                 </h1>
                                 <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp"
-                                    data-delay="1.8s"><span>Discover
-                                        with us</span> <i class="fa-solid fa-angles-right"></i></a>
+                                    data-delay="1.8s">
+                                    <span>Discover with us</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="banner-five__arry-btn">
-                <button class="arry-prev mb-15 banner-five__arry-prev"><i
-                        class="fa-light fa-chevron-left"></i></button>
-                <button class="arry-next banner-five__arry-next"><i class="fa-light fa-chevron-right"></i></button>
+                <button class="arry-prev mb-15 banner-five__arry-prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="arry-next banner-five__arry-next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
         </section>
+
         <!-- Banner area end here -->
 
-        <!-- View area start here -->
-        <section class="blog-two view-area pb-130 pt-65">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">
-                        <div class="donation__item blog-two__item bor view__item">
-                            <div class="blog-two__image mb-30">
-                                <div class="image">
-                                    <img src="assets/images/view/view-image1.jpg" alt="image">
-                                </div>
-                            </div>
-                            <h3><a href="project-single.html">Berry Bliss</a></h3>
-                            <a class="blog-two__item-arrow" href="project-single.html"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="1.4s" data-wow-delay=".4s">
-                        <div class="donation__item blog-two__item bor view__item">
-                            <div class="blog-two__image mb-30">
-                                <div class="image">
-                                    <img src="assets/images/view/view-image2.jpg" alt="image">
-                                </div>
-                            </div>
-                            <h3><a href="project-single.html">Juicy Jubilee</a></h3>
-                            <a class="blog-two__item-arrow" href="project-single.html"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="1.6s" data-wow-delay=".6s">
-                        <div class="donation__item blog-two__item bor view__item">
-                            <div class="blog-two__image mb-30">
-                                <div class="image">
-                                    <img src="assets/images/view/view-image3.jpg" alt="image">
-                                </div>
-                            </div>
-                            <h3><a href="project-single.html">Exotic Eden</a></h3>
-                            <a class="blog-two__item-arrow" href="project-single.html"><i
-                                    class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- View area end here -->
+        <!-- View area removed here -->
 
         <!-- About area start here -->
         <section class="involve-two sub-bg pt-130 pb-130">
@@ -387,7 +255,7 @@
                         <div class="involve-two__item">
                             <div class="section-header mb-4">
                                 <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                        src="assets/images/icon/leaf.svg" alt="image"> ABOUT devgren NGO</h5>
+                                        src="assets/images/icon/leaf.svg" alt="image"> ABOUT OUR WEBSITE</h5>
                                 <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Growth and
                                     Glow
                                     Illuminating Paths to Wellness in Your Garden</h2>
@@ -466,7 +334,7 @@
         </section>
         <!-- About area end here -->
 
-        <!-- Work area start here -->
+        <!-- Articles area start here -->
         <section class="work work-five pt-130 pb-65">
             <div class="container">
                 <div class="pb-65 bor-bottom mb-65">
@@ -474,16 +342,8 @@
                         <div class="col-lg-6">
                             <div class="section-header m-0">
                                 <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                        src="assets/images/icon/leaf.svg" alt="image"> WHAT WE DO</h5>
-                                <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">We work
-                                    together
-                                    for bettering tomorrow</h2>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="work-five__head-image wow fadeInUp float-start float-lg-end"
-                                data-wow-duration="1.6s" data-wow-delay=".6s">
-                                <img src="assets/images/work/how-image1.png" alt="image">
+                                        src="assets/images/icon/leaf.svg" alt="image"> EXPLORE </h5>
+                                <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Articles</h2>
                             </div>
                         </div>
                     </div>
@@ -556,7 +416,7 @@
                 </div>
             </div>
         </section>
-        <!-- Work area end here -->
+        <!-- Articles area end here -->
 
         <!-- achievement area start here -->
         <section class="achievement-five">
@@ -607,10 +467,8 @@
         <section class="project-five pt-130">
             <div class="section-header text-center">
                 <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                        src="assets/images/icon/leaf.svg" alt="image"> COMPLETED PROJECT</h5>
-                <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">recent complete project <br>
-                    by
-                    devgren</h2>
+                        src="assets/images/icon/leaf.svg" alt="image"> PLANT CATEGORIES</h5>
+                <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">recent complete project</h2>
             </div>
             <div class="row g-0">
                 <div class="col-xxl-3 wow fadeInDown col-lg-6" data-wow-duration="1.2s" data-wow-delay=".2s">
@@ -693,396 +551,10 @@
         </section>
         <!-- Project area end here -->
 
-        <!-- Team area start here -->
-        <section class="team pt-130 pb-130">
-            <div class="container">
-                <div class="blog__head-wrp mb-65">
-                    <div class="section-header m-0">
-                        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                src="assets/images/icon/leaf.svg" alt="image"> OUR TEAM MEMBERS</h5>
-                        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">devgren awesome team
-                        </h2>
-                    </div>
-                    <div class="arry-btn mt-4 mt-lg-0">
-                        <button class="arry-prev team__arry-prev wow fadeInUp" data-wow-duration="1.6s"
-                            data-wow-delay=".6s"><i class="fa-light fa-chevron-left"></i></button>
-                        <button class="ms-3 active arry-next team__arry-next wow fadeInUp" data-wow-duration="1.8s"
-                            data-wow-delay=".8s"><i class="fa-light fa-chevron-right"></i></button>
-                    </div>
-                </div>
-                <div class="swiper team__slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="team__item">
-                                <div class="team__item-image">
-                                    <img src="assets/images/team/team1.png" alt="image">
-                                    <div class="team__item-image-icon social-icon">
-                                        <a href="#0"><i class="fa-brands fa-facebook-f"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                                <h3><a href="team-single.html">Dana A. Hutchison</a></h3>
-                                <span>Founder</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team__item">
-                                <div class="team__item-image">
-                                    <img src="assets/images/team/team2.png" alt="image">
-                                    <div class="team__item-image-icon social-icon">
-                                        <a href="#0"><i class="fa-brands fa-facebook-f"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                                <h3><a href="team-single.html">Bonnie J. Britt</a></h3>
-                                <span>Forest Officer</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team__item">
-                                <div class="team__item-image">
-                                    <img src="assets/images/team/team3.png" alt="image">
-                                    <div class="team__item-image-icon social-icon">
-                                        <a href="#0"><i class="fa-brands fa-facebook-f"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                                <h3><a href="team-single.html">Francis A. Cote</a></h3>
-                                <span>Garden Maker</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team__item">
-                                <div class="team__item-image">
-                                    <img src="assets/images/team/team4.png" alt="image">
-                                    <div class="team__item-image-icon social-icon">
-                                        <a href="#0"><i class="fa-brands fa-facebook-f"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-twitter"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a href="#0"><i class="fa-brands fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                                <h3><a href="team-single.html">Mario L. Lawhorn</a></h3>
-                                <span>Co - Founder</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Team area end here -->
-
-        <!-- Donation area start here -->
-        <section class="donation pt-130 pb-130" data-background="assets/images/bg/donation.jpg">
-            <div class="donation__wrp">
-                <div class="section-header text-center">
-                    <h5 class="text-white wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                            src="assets/images/icon/leaf-light.svg" alt="image"> OPEN
-                        DONATION
-                    </h5>
-                    <h2 class="text-white wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
-                        Fundraising Causes Need <br>
-                        for future</h2>
-                </div>
-                <div class="swiper donation-five__slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="donation__item">
-                                <div class="image mb-30">
-                                    <img src="assets/images/donation/01.jpg" alt="image">
-                                </div>
-                                <div class="donation__item-progress-wrp">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6>Goal $3000</h6>
-                                        <h6>Raised $2000</h6>
-                                    </div>
-                                    <div class="donation__item-progress-bar"></div>
-                                </div>
-                                <h3><a href="donation-single.html">The Mary Donate For Youth Health & plants</a></h3>
-                                <a class="donation__item-arrow" href="donation-single.html"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="donation__item">
-                                <div class="image mb-30">
-                                    <img src="assets/images/donation/04.jpg" alt="image">
-                                </div>
-                                <div class="donation__item-progress-wrp">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6>Goal $3000</h6>
-                                        <h6>Raised $2000</h6>
-                                    </div>
-                                    <div class="donation__item-progress-bar"></div>
-                                </div>
-                                <h3><a href="donation-single.html">Need Help Donate For Pet Doctor & nurse</a></h3>
-                                <a class="donation__item-arrow" href="donation-single.html"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="donation__item">
-                                <div class="image mb-30">
-                                    <img src="assets/images/donation/03.jpg" alt="image">
-                                </div>
-                                <div class="donation__item-progress-wrp">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6>Goal $3000</h6>
-                                        <h6>Raised $2000</h6>
-                                    </div>
-                                    <div class="donation__item-progress-bar"></div>
-                                </div>
-                                <h3><a href="donation-single.html">The Mary Donate For Youth Health & plants</a></h3>
-                                <a class="donation__item-arrow" href="donation-single.html"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="donation__item">
-                                <div class="image mb-30">
-                                    <img src="assets/images/donation/05.jpg" alt="image">
-                                </div>
-                                <div class="donation__item-progress-wrp">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6>Goal $3000</h6>
-                                        <h6>Raised $2000</h6>
-                                    </div>
-                                    <div class="donation__item-progress-bar"></div>
-                                </div>
-                                <h3><a href="donation-single.html">Need Help Donate For Pet Doctor & nurse</a></h3>
-                                <a class="donation__item-arrow" href="donation-single.html"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="donation__item">
-                                <div class="image mb-30">
-                                    <img src="assets/images/donation/06.jpg" alt="image">
-                                </div>
-                                <div class="donation__item-progress-wrp">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6>Goal $3000</h6>
-                                        <h6>Raised $2000</h6>
-                                    </div>
-                                    <div class="donation__item-progress-bar"></div>
-                                </div>
-                                <h3><a href="donation-single.html">The Mary Donate For Youth Health & plants</a></h3>
-                                <a class="donation__item-arrow" href="donation-single.html"><i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Donation area end here -->
-
-        <!-- Testimonial area start here -->
-        <section class="testimonial pt-130 pb-130 sub-bg">
-            <div class="container">
-                <div class="testimonial__head-wrp mb-65">
-                    <div class="section-header m-0">
-                        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                src="assets/images/icon/leaf.svg" alt="image"> our client’s feedback
-                        </h5>
-                        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">devgren loves people
-                        </h2>
-                    </div>
-                    <div class="dot-wrp wow fadeInUp mt-5 mt-sm-0" data-wow-duration="1.6s" data-wow-delay=".6s">
-                        <div class="dot testimonial__dot"></div>
-                    </div>
-                </div>
-                <div class="swiper testimonial__slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testimonial__item">
-                                <div class="testimonial__item-head">
-                                    <div class="testimonial__item-head-info">
-                                        <div class="testimonial__item-head-info-image">
-                                            <img src="assets/images/testimonial/01.png" alt="image">
-                                        </div>
-                                        <div class="testimonial__item-head-info-con">
-                                            <h3>Kenneth S. Fisher</h3>
-                                            <span>Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                    <i class="fa-solid fa-quote-right"></i>
-                                </div>
-                                <div class="testimonial__item-content">
-                                    <p>posuere luctus orci. Donec vitae mattis quam, vitae tempor arcu. Aenean non odio
-                                        porttitor, convallis erat sit amet,
-                                        facilisis velit. Nulla ornare convallis</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial__item">
-                                <div class="testimonial__item-head">
-                                    <div class="testimonial__item-head-info">
-                                        <div class="testimonial__item-head-info-image">
-                                            <img src="assets/images/testimonial/02.png" alt="image">
-                                        </div>
-                                        <div class="testimonial__item-head-info-con">
-                                            <h3>Jennifer R. Tanaka</h3>
-                                            <span>Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                    <i class="fa-solid fa-quote-right"></i>
-                                </div>
-                                <div class="testimonial__item-content">
-                                    <p>posuere luctus orci. Donec vitae mattis quam, vitae tempor arcu. Aenean non odio
-                                        porttitor, convallis erat sit amet,
-                                        facilisis velit. Nulla ornare convallis</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonial__item">
-                                <div class="testimonial__item-head">
-                                    <div class="testimonial__item-head-info">
-                                        <div class="testimonial__item-head-info-image">
-                                            <img src="assets/images/testimonial/01.png" alt="image">
-                                        </div>
-                                        <div class="testimonial__item-head-info-con">
-                                            <h3>Kenneth S. Fisher</h3>
-                                            <span>Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                    <i class="fa-solid fa-quote-right"></i>
-                                </div>
-                                <div class="testimonial__item-content">
-                                    <p>posuere luctus orci. Donec vitae mattis quam, vitae tempor arcu. Aenean non odio
-                                        porttitor, convallis erat sit amet,
-                                        facilisis velit. Nulla ornare convallis</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Testimonial area end here -->
-
-        <!-- Blog area start here -->
-        <section class="blog pt-130 pb-130">
-            <div class="container">
-                <div class="blog__head-wrp mb-65">
-                    <div class="section-header m-0">
-                        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                src="assets/images/icon/leaf.svg" alt="image"> LATEST NEWS</h5>
-                        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">get news from devgren
-                        </h2>
-                    </div>
-                    <a href="blog-3.html" class="btn-one mt-4 mt-md-0 wow fadeInUp" data-wow-duration="1.6s"
-                        data-wow-delay=".6s"><span>view all news</span> <i class="fa-solid fa-angles-right"></i></a>
-                </div>
-                <div class="row g-4 justify-content-center">
-                    <div class="col-xl-8 wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".2s">
-                        <div class="blog__item-left">
-                            <div class="swiper blog__slider">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="row g-4">
-                                            <div class="col-md-5">
-                                                <div class="blog__item-left-content">
-                                                    <span class="blog__tag">Environment</span>
-                                                    <h3><a href="blog-single.html">roup of young volunteers in
-                                                            park. they are planting</a></h3>
-                                                    <p>Tree planting is the act of planting young trees, shrubs, or
-                                                        other woody
-                                                        plants into the
-                                                        ground to establish new
-                                                        forests.</p>
-                                                    <span class="blog__item-left-content-info">By <strong>Max
-                                                            Trewhitt</strong> 2
-                                                        weeks ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="image">
-                                                    <img src="assets/images/blog/01.jpg" alt="image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="row g-4">
-                                            <div class="col-md-5">
-                                                <div class="blog__item-left-content">
-                                                    <span class="blog__tag">Environment</span>
-                                                    <h3><a href="blog-single.html">roup of young volunteers in
-                                                            park. they are planting</a></h3>
-                                                    <p>Tree planting is the act of planting young trees, shrubs, or
-                                                        other woody
-                                                        plants into the
-                                                        ground to establish new
-                                                        forests.</p>
-                                                    <span class="blog__item-left-content-info">By <strong>Max
-                                                            Trewhitt</strong> 2
-                                                        weeks ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="image">
-                                                    <img src="assets/images/blog/03.jpg" alt="image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="row g-4">
-                                            <div class="col-md-5">
-                                                <div class="blog__item-left-content">
-                                                    <span class="blog__tag">Environment</span>
-                                                    <h3><a href="blog-single.html">roup of young volunteers in
-                                                            park. they are planting</a></h3>
-                                                    <p>Tree planting is the act of planting young trees, shrubs, or
-                                                        other woody
-                                                        plants into the
-                                                        ground to establish new
-                                                        forests.</p>
-                                                    <span class="blog__item-left-content-info">By <strong>Max
-                                                            Trewhitt</strong> 2
-                                                        weeks ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="image">
-                                                    <img src="assets/images/blog/04.jpg" alt="image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="blog__item-left-dot-wrp">
-                                <div class="dot blog__dot"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay=".4s">
-                        <div class="blog__item-right">
-                            <a href="blog-single.html" class="image d-block">
-                                <img src="assets/images/blog/02.jpg" alt="image">
-                            </a>
-                            <h3><a href="blog-single.html">Close up picture of the sapling of the plant is growing</a>
-                            </h3>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="blog__tag">Environment</span>
-                                <span>2 weeks ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Blog area end here -->
+        <!-- Team area removed here -->
+        <!-- Donation area removed here -->
+        <!-- Testimonial area removed here -->
+        <!-- Blog area removed here -->
 
         <!-- Our info area start here -->
         <div class="our-info" data-background="assets/images/bg/our-info.jpg">
