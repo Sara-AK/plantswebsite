@@ -1,4 +1,3 @@
-<!-- Header area start here -->
 <header class="header header-five">
     <div class="header-section">
         <div class="container">
@@ -11,13 +10,8 @@
                         <img src="{{ asset('assets/images/logo/logo-light.svg') }}" alt="logo">
                     </a>
                 </div>
-                <div class="header-bar d-xl-none">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
                 <ul class="main-menu">
-                    <li><a class="text-white" href="#">About Us</a></li>
+                    <li><a class="text-white" href="plantproducts/1">About Us</a></li>
                     <li><a class="text-white" href="#">Services</a></li>
                     <li><a class="text-white" href="{{ url('contact') }}">Contact Us</a></li>
                     <li class="menu-btn">
@@ -49,4 +43,3 @@
         </div>
     </div>
 </header>
-<!-- Header area end here -->

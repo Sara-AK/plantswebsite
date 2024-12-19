@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantProduct extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name', 'description', 'price', 'plant_id'];
 
-    protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'picture',
-    ];
+    public function plant()
+    {
+        return $this->belongsTo(Plant::class);
+    }
 }
+

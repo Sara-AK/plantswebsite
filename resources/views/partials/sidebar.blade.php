@@ -1,4 +1,3 @@
-<!-- Sidebar area start here -->
 <div id="targetElement" class="side_bar slideInRight side_bar_hidden">
     <div class="side_bar_overlay"></div>
     <div class="logo mb-30">
@@ -22,4 +21,3 @@
     </div>
     <button id="closeButton" class="text-white"><i class="fa-solid fa-xmark"></i></button>
 </div>
-<!-- Sidebar area end here -->

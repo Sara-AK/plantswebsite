@@ -1,4 +1,3 @@
-    <!-- Footer area start here -->
     <footer class="footer bg-image" data-background="{{ asset('assets/images/bg/footer-bg.jpg') }}">
         <div class="container">
             <div class="pt-65 pb-65">
@@ -94,4 +93,3 @@
             <p>&copy; Copyright 2024 <a href="#0">devgren</a> All Rights Reserved</p>
         </div>
     </footer>
-    <!-- Footer area end here -->
