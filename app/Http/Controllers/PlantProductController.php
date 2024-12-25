@@ -11,8 +11,11 @@ class PlantProductController extends Controller
      */
     public function index()
     {
-        $products = PlantProduct::all();
-        return view('plant_products.index', compact('products'));
+        // Fetch all plant products
+        $plantProducts = PlantProduct::all();
+
+        // Pass the data to the welcome view
+        return view('welcome', compact('plantProducts'));
     }
 
 

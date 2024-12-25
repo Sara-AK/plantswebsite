@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantProduct extends Model
 {
+
+    protected $table = 'plantproducts';
+
     protected $fillable = ['name', 'description', 'price', 'plant_id'];
 
     public function plant()

@@ -3,13 +3,17 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlantProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/', [WelcomeController::class, 'index']);
+
 
 Route::get('/plantproducts/{id}', [PlantProductController::class, 'show'])->name('plantproducts.show');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
