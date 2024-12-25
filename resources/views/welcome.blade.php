@@ -61,6 +61,87 @@
     </section>
     <!-- Banner area end here -->
 
+    <!-- About area start here -->
+    <section class="involve-two sub-bg pt-130 pb-130">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-xl-6">
+                    <div class="involve-two__image">
+                        <img src="assets/images/about/about-five-image.png" alt="image">
+                        <div class="image-sm">
+                            <img src="assets/images/involve/involve-sm.jpg" alt="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="involve-two__item">
+                        <div class="section-header mb-4">
+                            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
+                                    src="assets/images/icon/leaf.svg" alt="image"> ABOUT OUR WEBSITE</h5>
+                            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Illuminating Paths to
+                                Wellness in Your Garden</h2>
+                            <p class="wow fadeInUp" data-wow-duration="1.6s" data-wow-delay=".6s">Our website is a hub for
+                                plant enthusiasts, connecting you with planting tips, expert advice, and plant sellers while
+                                fostering a social space for sharing your plant journey.</p>
+                        </div>
+                        <div class="accordion" id="accordionExample-two">
+                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">
+                                <h2 class="accordion-header" id="heading1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                        Planting Tips and Expert Advice
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                                    data-bs-parent="#accordionExample-two">
+                                    <div class="accordion-body">
+                                        <p>Our goal is to bridge the gap between plant lovers and experts, offering
+                                            personalized advice to help you nurture your plants to their fullest potential.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bor-top wow fadeInDown" data-wow-duration="1.4s"
+                                data-wow-delay=".4s">
+                                <h2 class="accordion-header" id="heading2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                        Connecting Buyers and Sellers
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                                    data-bs-parent="#accordionExample-two">
+                                    <div class="accordion-body">
+                                        <p>Find local and online shops with a variety of plants and tools, creating a
+                                            vibrant marketplace to fulfill all your gardening needs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.6s" data-wow-delay=".6s">
+                                <h2 class="accordion-header" id="heading3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                        Community Growth and Sharing
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                                    data-bs-parent="#accordionExample-two">
+                                    <div class="accordion-body">
+                                        <p>Be a part of our plant-loving community! Share your plant growth stories, post
+                                            tips, and inspire others to start their own green journeys.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn-one mt-35"><span>More About us</span> <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About area end here -->
+
     <!-- View area start here -->
     <section class="blog-two view-area pb-130 pt-65">
         <div class="container">
@@ -84,96 +165,6 @@
         </div>
     </section>
     <!-- View area end here -->
-
-    <!-- About area start here -->
-    <section class="involve-two sub-bg pt-130 pb-130">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-xl-6">
-                    <div class="involve-two__image">
-                        <img src="assets/images/about/about-five-image.png" alt="image">
-                        <div class="image-sm">
-                            <img src="assets/images/involve/involve-sm.jpg" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="involve-two__item">
-                        <div class="section-header mb-4">
-                            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                    src="assets/images/icon/leaf.svg" alt="image"> ABOUT OUR WEBSITE</h5>
-                            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Growth and
-                                Glow
-                                Illuminating Paths to Wellness in Your Garden</h2>
-                            <p class="wow fadeInUp" data-wow-duration="1.6s" data-wow-delay=".6s">We want to live
-                                on
-                                a healthy, peaceful planet. A planet where forests flourish, oceans are full of life
-                                and where
-                                once-threatened animals safely roam. Where our quality of life is measured in
-                                relationships, not things we have or own.</p>
-                        </div>
-                        <div class="accordion" id="accordionExample-two">
-                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">
-                                <h2 class="accordion-header" id="heading1">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                        E-Waste Recycling
-                                    </button>
-                                </h2>
-                                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
-                                    data-bs-parent="#accordionExample-two">
-                                    <div class="accordion-body">
-                                        <p>Our goal is to ensure the ability of the earth to nurture life in all its
-                                            diversity: protect biodiversity in all its
-                                            forms, prevent pollution of land, air and water, promote forestation and
-                                            protect wildlife.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item bor-top wow fadeInDown" data-wow-duration="1.4s"
-                                data-wow-delay=".4s">
-                                <h2 class="accordion-header" id="heading2">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                        Water Conservation
-                                    </button>
-                                </h2>
-                                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
-                                    data-bs-parent="#accordionExample-two">
-                                    <div class="accordion-body">
-                                        <p>Our goal is to ensure the ability of the earth to nurture life in all its
-                                            diversity: protect biodiversity in all its
-                                            forms, prevent pollution of land, air and water, promote forestation and
-                                            protect wildlife.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.6s" data-wow-delay=".6s">
-                                <h2 class="accordion-header" id="heading3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                        Community devgren
-                                    </button>
-                                </h2>
-                                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
-                                    data-bs-parent="#accordionExample-two">
-                                    <div class="accordion-body">
-                                        <p>Our goal is to ensure the ability of the earth to nurture life in all its
-                                            diversity: protect biodiversity in all its
-                                            forms, prevent pollution of land, air and water, promote forestation and
-                                            protect wildlife.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="about.html" class="btn-one mt-35"><span>More About us</span> <i
-                                class="fa-solid fa-angles-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About area end here -->
 
     <!-- Articles area start here -->
     <section class="work work-five pt-130 pb-65">
@@ -259,50 +250,7 @@
     </section>
     <!-- Articles area end here -->
 
-    <!-- achievement area start here -->
-    <section class="achievement-five">
-        <div class="container">
-            <div class="achievement-five__wrp bg-image" data-background="assets/images/bg/achievement-bg.jpg">
-                <div class="row g-4 align-items-center justify-content-between">
-                    <div class="col-lg-5">
-                        <div class="achievement-five__item">
-                            <h3 class="wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">What have we
-                                achieved so far?</h3>
-                            <a href="team.html" class="btn-two-light wow fadeInUp mt-50" data-wow-duration="1.2s"
-                                data-wow-delay=".2s"><span>join our team</span> <i
-                                    class="fa-solid fa-angles-right"></i></a>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-2 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
-                        <div class="achievement-five__count">
-                            <h2 class="count">120</h2>
-                            <h5>Social activism projects
-                                accomplished</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
-                        <div class="achievement-five__count">
-                            <h2 class="count">90</h2>
-                            <h5>Communities in
-                                environment</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 wow fadeInUp" data-wow-duration="1.6s" data-wow-delay=".6s">
-                        <div class="achievement-five__count">
-                            <h2 class="count">75</h2>
-                            <h5>Team members activate <br>
-                                in nature</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="achievement-five__bg-overlay">
-                    <img src="assets/images/bg/achievement-bg-image.jpg" alt="image">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- achievement area end here -->
+    <!-- achievement area removed here -->
 
     <!-- Plants area sart here -->
     <section class="project-five pt-130">
