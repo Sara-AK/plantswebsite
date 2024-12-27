@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 
 class PlantProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function publicIndex()
+    {
+        $products = PlantProduct::all(); // Fetch all plant products for users.
+        return view('products.index', compact('products')); // User-facing view
+    }
+
+    public function publicShow(PlantProduct $product)
+    {
+        return view('products.show', compact('product')); // Details page for a product
+    }
+
+
+    //Display a listing of the resource.
     public function index()
     {
         // Fetch all plant products
