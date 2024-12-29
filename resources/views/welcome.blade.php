@@ -142,7 +142,7 @@
     </section>
     <!-- About area end here -->
 
-    <!-- View area start here -->
+    <!-- product area start here -->
     <section class="blog-two view-area pb-130 pt-65">
         <div class="container">
             <div class="row g-4">
@@ -164,7 +164,7 @@
             </div>
         </div>
     </section>
-    <!-- View area end here -->
+    <!-- product area end here -->
 
     <!-- Articles area start here -->
     <section class="work work-five pt-130 pb-65">
@@ -281,45 +281,21 @@
                 </div>
             @endforeach
         </div>
+        <div class="text-center mt-5">
+            <a href="{{ route('plants.index') }}" class="btn-one">
+                <span>View All Plants</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
     <!-- Project area end here -->
 
-    <!-- Team area removed here -->
-    <!-- Donation area removed here -->
-    <!-- Testimonial area removed here -->
-    <!-- Blog area removed here -->
+    <!-- Team area removed here
+                                Donation area removed here
+                                Testimonial area removed here
+                                Blog area removed here
+                                -->
 
-    <!-- Our info area start here -->
-    <div class="our-info" data-background="assets/images/bg/our-info.jpg">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
-                    <a href="index-2.html" class="our-info__logo mb-4 mb-lg-0">
-                        <img src="assets/images/logo/logo-light.svg" alt="logo">
-                    </a>
-                </div>
-                <div class="col-lg-5 wow fadeInDown" data-wow-duration="1.6s" data-wow-delay=".6s">
-                    <div class="our-info__input">
-                        <input type="text" placeholder="Your email Address">
-                        <i class="fa-regular fa-envelope our-info__input-envelope"></i>
-                        <i class="fa-solid fa-paper-plane our-info__input-plane"></i>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="our-info__social-icon float-lg-end float-none mt-4 mt-lg-0">
-                        <a class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s" href="#0"><i
-                                class="fa-brands fa-facebook-f"></i></a>
-                        <a class="wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".3s" href="#0"><i
-                                class="fa-brands fa-twitter"></i></a>
-                        <a class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s" href="#0"><i
-                                class="fa-brands fa-linkedin-in"></i></a>
-                        <a class="wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".5s" href="#0"><i
-                                class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our info area end here -->
+
 
 @endsection

@@ -8,9 +8,13 @@ class PlantController extends Controller
 {
     public function publicIndex()
     {
-        $plants = Plant::all(); // Fetch all plants for users.
-        return view('plants.index', compact('plants')); // User-facing view
+        // Fetch all plants from the database with pagination for better performance
+        $plants = Plant::paginate(6); // Adjust the number of plants per page if needed
+
+        // Return the user-facing view with paginated plants
+        return view('plants.index', compact('plants'));
     }
+
 
     public function publicShow(Plant $plant)
     {
@@ -21,7 +25,10 @@ class PlantController extends Controller
 
     public function index()
     {
-        $plants = Plant::all();
+        // Fetch all plants from the database with pagination for better performance
+        $plants = Plant::paginate(6); // Adjust the number of plants per page if needed
+
+        // Return the user-facing view with paginated plants
         return view('plants.index', compact('plants'));
     }
 

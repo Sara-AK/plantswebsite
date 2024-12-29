@@ -6,6 +6,10 @@ use App\Http\Controllers\PlantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
+Route::get('/plants', [PlantController::class, 'index'])->name('plants.index'); // List all plants
+Route::get('/plants/{id}', [PlantController::class, 'show'])->name('plants.show'); // Show a specific plant
+
+
 Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/plants', [PlantController::class, 'publicIndex'])->name('plants.index');

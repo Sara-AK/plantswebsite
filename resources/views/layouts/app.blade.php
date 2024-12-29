@@ -6,21 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Devgren - Gardening and Landscaping HTML Template')</title>
-    <!-- Favicon img -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
-    <!-- Bootstrap min css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <!-- All min css -->
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
-    <!-- Swiper bundle min css -->
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
-    <!-- Magnific popup css -->
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
-    <!-- Animate css -->
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <!-- Nice select css -->
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
-    <!-- Style css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet"
@@ -37,6 +29,7 @@
         @yield('content')
     </main>
 
+    @include('partials.info')
     @include('partials.footer')
 
     <!-- Back to top area start here -->
