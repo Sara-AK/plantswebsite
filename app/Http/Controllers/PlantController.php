@@ -20,10 +20,19 @@ class PlantController extends Controller
         return view('admin.plants.index', compact('plants'));
     }
 
-    // Public-facing single plant details
-    public function show(Plant $plant)
+
+
+    public function show($id)
     {
-        return view('public.plants.show', compact('plant'));
+        $plant = Plant::findOrFail($id); // Fetch plant by ID, return 404 if not found
+        return view('public.plants.show', compact('plant')); // Pass the plant data to the view
+    }
+
+
+    public function showSingle($id)
+    {
+        $plant = Plant::findOrFail($id); // Fetch plant by ID, return 404 if not found
+        return view('plants.show', compact('plant')); // Pass the plant data to the view
     }
 
     // Admin-facing plant editing

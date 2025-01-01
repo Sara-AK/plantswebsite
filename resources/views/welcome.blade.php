@@ -163,6 +163,12 @@
                 @endforeach
             </div>
         </div>
+        <div class="text-center mt-5">
+            <a href="{{ route('public.products.index') }}" class="btn-one">
+                <span>View All Plant Products</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
     <!-- product area end here -->
 

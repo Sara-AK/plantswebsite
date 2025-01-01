@@ -9,13 +9,13 @@ class PlantProductController extends Controller
 
     public function publicIndex()
     {
-        $products = PlantProduct::all(); // Fetch all plant products for users.
-        return view('products.index', compact('products')); // User-facing view
+        $products = PlantProduct::paginate(6); // Public view with pagination
+        return view('public.products.index', compact('products'));
     }
 
     public function publicShow(PlantProduct $product)
     {
-        return view('products.show', compact('product')); // Details page for a product
+        return view('public.products.show', compact('product')); // Details page for a product
     }
 
 
