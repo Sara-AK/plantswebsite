@@ -23,7 +23,7 @@
                             <p>{{ \Illuminate\Support\Str::limit($plant->description, 100) }}</p>
 
                             <div class="text-center mt-5">
-                                <a href="{{ route('plants.show', $plant->id) }}" class="btn-one">
+                                <a href="{{ route('public.plants.show', $plant->id) }}" class="btn-one">
                                     <span>View Details</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>

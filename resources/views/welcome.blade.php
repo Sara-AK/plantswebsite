@@ -267,7 +267,7 @@
                         <div class="project-five__content bg-white">
                             <h3>{{ $plant->name }}</h3>
                             <p>{{ $plant->description }}</p>
-                            <a href="plantproducts/{{ $plant->id }}" class="btn-two">
+                            <a href="plants/{{ $plant->id }}" class="btn-two">
                                 <span>Care Tips</span>
                                 <i class="fa-solid fa-angles-right"></i>
                             </a>
@@ -282,7 +282,7 @@
             @endforeach
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('plants.index') }}" class="btn-one">
+            <a href="{{ route('public.plants.index') }}" class="btn-one">
                 <span>View All Plants</span>
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -290,11 +290,11 @@
     </section>
     <!-- Project area end here -->
 
-    <!-- Team area removed here
-                                Donation area removed here
-                                Testimonial area removed here
-                                Blog area removed here
-                                -->
+    <!--Team area removed here-->
+    <!--Donation area removed here-->
+    <!--Testimonial area removed here-->
+    <!--Blog area removed here-->
+
 
 
 

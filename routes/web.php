@@ -6,17 +6,17 @@ use App\Http\Controllers\PlantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
-Route::get('/plants', [PlantController::class, 'index'])->name('plants.index'); // List all plants
-Route::get('/plants/{id}', [PlantController::class, 'show'])->name('plants.show'); // Show a specific plant
+Route::get('/plants', [PlantController::class, 'index'])->name('public.plants.index'); // List all plants
+Route::get('/plants/{id}', [PlantController::class, 'show'])->name('public.plants.show'); // Show a specific plant
 
 
 Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/plants', [PlantController::class, 'publicIndex'])->name('plants.index');
-Route::get('/plants/{plant}', [PlantController::class, 'publicShow'])->name('plants.show');
+Route::get('/plants', [PlantController::class, 'publicIndex'])->name('public.plants.index');
+Route::get('/plants/{plant}', [PlantController::class, 'publicShow'])->name('public.plants.show');
 
-Route::get('/products', [PlantProductController::class, 'publicIndex'])->name('products.index');
-Route::get('/products/{product}', [PlantProductController::class, 'publicShow'])->name('products.show');
+Route::get('/products', [PlantProductController::class, 'publicIndex'])->name('public.products.index');
+Route::get('/products/{product}', [PlantProductController::class, 'publicShow'])->name('public.products.show');
 
 Route::prefix('admin')->group(function () {
     Route::resource('plants', PlantController::class)->names([

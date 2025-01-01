@@ -6,76 +6,47 @@ use Illuminate\Http\Request;
 
 class PlantController extends Controller
 {
+    // Public-facing plants list
     public function publicIndex()
     {
-        // Fetch all plants from the database with pagination for better performance
-        $plants = Plant::paginate(6); // Adjust the number of plants per page if needed
-
-        // Return the user-facing view with paginated plants
-        return view('plants.index', compact('plants'));
+        $plants = Plant::paginate(6); // Public view with pagination
+        return view('public.plants.index', compact('plants'));
     }
 
-
-    public function publicShow(Plant $plant)
+    // Admin-facing plants list
+    public function adminIndex()
     {
-        return view('plants.show', compact('plant')); // Details page for a plant
+        $plants = Plant::all(); // Fetch all plants for admin
+        return view('admin.plants.index', compact('plants'));
     }
 
-
-
-    public function index()
+    // Public-facing single plant details
+    public function show(Plant $plant)
     {
-        // Fetch all plants from the database with pagination for better performance
-        $plants = Plant::paginate(6); // Adjust the number of plants per page if needed
-
-        // Return the user-facing view with paginated plants
-        return view('plants.index', compact('plants'));
+        return view('public.plants.show', compact('plant'));
     }
 
-    public function create()
+    // Admin-facing plant editing
+    public function adminEdit(Plant $plant)
     {
-        return view('plants.create');
+        return view('admin.plants.edit', compact('plant'));
     }
 
-    public function store(Request $request)
+    // Store or Update plant (used by admin)
+    public function storeOrUpdate(Request $request, Plant $plant = null)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'pictures' => 'nullable|string',
-            'caredifficulty' => 'nullable|string',
-            'caretips' => 'nullable|string',
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'picture_url' => 'nullable|url',
         ]);
 
-        Plant::create($validated);
+        if ($plant) {
+            $plant->update($validated); // Update existing plant
+        } else {
+            Plant::create($validated); // Create new plant
+        }
 
-        return redirect()->route('plants.index')->with('success', 'Plant added successfully!');
-    }
-
-    public function edit(Plant $plant)
-    {
-        return view('plants.edit', compact('plant'));
-    }
-
-    public function update(Request $request, Plant $plant)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'pictures' => 'nullable|string',
-            'caredifficulty' => 'nullable|string',
-            'caretips' => 'nullable|string',
-        ]);
-
-        $plant->update($validated);
-
-        return redirect()->route('plants.index')->with('success', 'Plant updated successfully!');
-    }
-
-    public function destroy(Plant $plant)
-    {
-        $plant->delete();
-
-        return redirect()->route('plants.index')->with('success', 'Plant deleted successfully!');
+        return redirect()->route('admin.plants.index')->with('success', 'Plant saved!');
     }
 }
