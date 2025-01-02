@@ -3,14 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlantProductController;
 use App\Http\Controllers\PlantController;
-
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
 Route::get('/plants', [PlantController::class, 'index'])->name('public.plants.index'); // List all plants
 Route::get('/plants/{id}', [PlantController::class, 'show'])->name('public.plants.show');
 
-Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories', [CategoryController::class, 'index'])->name('public.categories.index');
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('public.categories.show');
 
 
 
