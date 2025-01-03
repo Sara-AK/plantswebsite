@@ -17,23 +17,50 @@
                 <div class="event-two__item">
                     <div class="event-two__content px-0">
                         <h3 class="mb-40">{{ $plant->name }}</h3>
+
+                        <!-- Categories Section -->
+                        <div class="mt-40">
+                            <h4 class="mb-20">Categories:</h4>
+                            <ul class="list-inline">
+                                @foreach ($plant->categories as $category)
+                                    <li class="list-inline-item">
+                                        <a href="{{ route('public.categories.show', $category->id) }}" class="btn-one">
+                                            <span>{{ $category->name }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <h4 class="mb-20">Regions:</h4>
+                            <ul class="list-inline">
+                                @foreach ($plant->regions as $region)
+                                    <li class="list-inline-item">
+                                        <a href="{{ route('public.categories.show', $region->id) }}" class="btn-one">
+                                            <span>{{ $region->name }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- End Categories Section -->
+
                         <p class="mb-30">{{ $plant->description }}</p>
-                        <p>Care Difficulty: {{ $plant->care_difficulty }}</p>
+                        <p><strong>Care Difficulty:</strong> {{ $plant->care_difficulty }}</p>
                         <p>{{ $plant->care_tips }}</p>
                     </div>
                 </div>
+
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="image">
-                            <img src="{{ $plant->picture_url }}" alt="{{ $plant->name }}">
+                            <img src="{{ $plant->picture_url }}" alt="{{ $plant->name }}" class="img-fluid rounded">
                         </div>
                     </div>
                 </div>
+
                 <p class="mt-40 mb-30">{{ $plant->additional_details }}</p>
             </div>
         </div>
     </section>
     <!-- Plant Details Section End -->
-
 
 @endsection

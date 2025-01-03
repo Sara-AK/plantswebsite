@@ -10,7 +10,6 @@ class Region extends Model
 
     public function plants()
     {
-        return $this->belongsToMany(Plant::class, 'plant_region');
+        return $this->belongsToMany(Plant::class, 'plant_region', 'region_id', 'plant_id');
     }
 }
-

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlantCategory extends Model
 {
-    protected $table = 'categories'; // Explicitly define the table name
+    protected $table = 'plantcategories'; // Explicitly define the table name
     protected $fillable = ['name', 'description'];
 
     public function plants()
@@ -14,4 +14,5 @@ class PlantCategory extends Model
         return $this->belongsToMany(Plant::class, 'category_plant');
     }
 }
+
 

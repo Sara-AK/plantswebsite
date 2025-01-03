@@ -11,15 +11,19 @@ class Plant extends Model
         'pictures' => 'array', // Automatically cast JSON to an array
     ];
 
+
     public function categories()
     {
-        return $this->belongsToMany(PlantCategory::class, 'category_plant');
+        return $this->belongsToMany(PlantCategory::class, 'category_plant', 'plant_id', 'plantcategory_id');
     }
+
+
 
     public function regions()
     {
-        return $this->belongsToMany(Region::class, 'plant_region');
+        return $this->belongsToMany(Region::class, 'plant_region', 'plant_id', 'region_id');
     }
+
 
     public function products()
     {

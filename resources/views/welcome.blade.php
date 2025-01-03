@@ -142,6 +142,45 @@
     </section>
     <!-- About area end here -->
 
+
+    <!-- Plants area sart here -->
+    <section class="project-five pt-130">
+        <div class="section-header text-center">
+            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                <img src="assets/images/icon/leaf.svg" alt="image"> PLANTS
+            </h5>
+            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Plants</h2>
+        </div>
+        <div class="row g-0">
+            @foreach ($plants as $plant)
+                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                    <div class="project-five__item sub-bg">
+                        <div class="project-five__content bg-white">
+                            <h3>{{ $plant->name }}</h3>
+                            <p>{{ $plant->description }}</p>
+                            <a href="plants/{{ $plant->id }}" class="btn-two">
+                                <span>Care Tips</span>
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
+                    <div class="project-five__image">
+                        <img src="" alt="{{ $plant->name }}">
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ route('public.plants.index') }}" class="btn-one">
+                <span>View All Plants</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+    <!-- Plant area end here -->
+
     <!-- product area start here -->
     <section class="blog-two view-area pb-130 pt-65">
         <div class="container">
@@ -258,43 +297,7 @@
 
     <!-- achievement area removed here -->
 
-    <!-- Plants area sart here -->
-    <section class="project-five pt-130">
-        <div class="section-header text-center">
-            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
-                <img src="assets/images/icon/leaf.svg" alt="image"> PLANTS
-            </h5>
-            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Plants</h2>
-        </div>
-        <div class="row g-0">
-            @foreach ($plants as $plant)
-                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
-                    <div class="project-five__item sub-bg">
-                        <div class="project-five__content bg-white">
-                            <h3>{{ $plant->name }}</h3>
-                            <p>{{ $plant->description }}</p>
-                            <a href="plants/{{ $plant->id }}" class="btn-two">
-                                <span>Care Tips</span>
-                                <i class="fa-solid fa-angles-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
-                    <div class="project-five__image">
-                        <img src="" alt="{{ $plant->name }}">
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-5">
-            <a href="{{ route('public.plants.index') }}" class="btn-one">
-                <span>View All Plants</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
-    </section>
-    <!-- Project area end here -->
+
 
     <!--Team area removed here-->
     <!--Donation area removed here-->
