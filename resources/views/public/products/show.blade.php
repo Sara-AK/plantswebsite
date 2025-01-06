@@ -19,6 +19,18 @@
                         <h3 class="mb-40">{{ $product->name }}</h3>
                         <p class="mb-30">{{ $product->description }}</p>
                         <p>Price: {{ $product->price }}</p>
+
+                        <!-- View Details About Plant Button -->
+                        @if ($product->plant)
+                            <div class="text-center mt-4">
+                                <a href="{{ route('public.plants.show', $product->plant->id) }}" class="btn-one">
+                                    <span>View Details About Plant</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        @else
+                            <p class="text-danger mt-4">No plant associated with this product.</p>
+                        @endif
                     </div>
                 </div>
             </div>

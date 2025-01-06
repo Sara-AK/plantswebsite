@@ -196,7 +196,8 @@
                             <h3><a href="#">{{ $product->name }}</a></h3>
                             <p>{{ $product->description }}</p>
                             <p>Price: ${{ $product->price }}</p>
-                            <a class="blog-two__item-arrow" href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                            <a class="blog-two__item-arrow" href="{{ route('public.products.show', $product->id) }}"><i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 @endforeach
