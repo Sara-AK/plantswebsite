@@ -15,7 +15,7 @@
                     <li><a class="text-white" href="#">Services</a></li>
                     <li><a class="text-white" href="{{ url('contact') }}">Contact Us</a></li>
                     <li class="menu-btn">
-                        <a href="{{ url('contact') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ route('register') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
                     </li>
                 </ul>
                 <!-- Mega menu area start here -->
