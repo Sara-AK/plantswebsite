@@ -44,8 +44,8 @@
                         <!-- End Categories Section -->
 
                         <p class="mb-30">{{ $plant->description }}</p>
-                        <p><strong>Care Difficulty:</strong> {{ $plant->care_difficulty }}</p>
-                        <p>{{ $plant->care_tips }}</p>
+                        <p><strong>Care Difficulty:</strong> {{ $plant->caredifficulty }}</p>
+                        <p>{{ $plant->caretips }}</p>
                     </div>
                 </div>
 

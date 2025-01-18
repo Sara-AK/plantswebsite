@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use App\Models\PlantCategory;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class PlantController extends Controller
@@ -13,12 +15,18 @@ class PlantController extends Controller
         return view('public.plants.index', compact('plants'));
     }
 
-    // Admin-facing plants list
-    public function adminIndex()
+
+    public function index()
     {
-        $plants = Plant::all(); // Fetch all plants for admin
-        return view('admin.plants.index', compact('plants'));
+        $plants = Plant::with(['categories', 'regions'])->get();
+        $allCategories = PlantCategory::all();
+        $allRegions = Region::all();
+
+        return view('admin.plants.index', compact('plants', 'allCategories', 'allRegions'));
     }
+
+
+
 
 
 
