@@ -182,6 +182,12 @@
     <!-- Plant area end here -->
 
     <!-- product area start here -->
+    <div class="section-header text-center">
+        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+            <img src="assets/images/icon/leaf.svg" alt="image"> PLANT PRODUCTS
+        </h5>
+        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Products</h2>
+    </div>
     <section class="blog-two view-area pb-130 pt-65">
         <div class="container">
             <div class="row g-4">
