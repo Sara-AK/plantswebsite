@@ -16,5 +16,10 @@ class PlantProduct extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+    public function categories()
+    {
+        return $this->belongsToMany(ProductCategory::class, 'product_category');
+    }
+
 }
 

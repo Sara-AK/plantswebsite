@@ -47,6 +47,35 @@
                         <p><strong>Care Difficulty:</strong> {{ $plant->caredifficulty }}</p>
                         <p>{{ $plant->caretips }}</p>
                     </div>
+
+                    <!-- Related Products Section -->
+                    <div class="mt-40">
+                        <h4 class="mb-20">Related Products:</h4>
+                        <div class="row g-4">
+                            @foreach ($relatedProducts as $product)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="event-two__item border rounded p-3 shadow-sm">
+                                        <div class="event-two__content px-0">
+                                            <h3 class="mb-20">{{ $product->name }}</h3>
+                                            <p class="mb-20">{{ $product->description }}</p>
+                                            <p><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
+
+                                            <!-- View Product Button -->
+                                            <div class="text-center mt-3">
+                                                <a href="{{ route('public.products.show', $product->id) }}" class="btn-one">
+                                                    <span>View Product</span>
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- End Related Products Section -->
+
                 </div>
 
                 <!-- Image Section - Right Half -->

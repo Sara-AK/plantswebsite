@@ -24,9 +24,11 @@ class Plant extends Model
         return $this->belongsToMany(Region::class, 'plant_region', 'plant_id', 'region_id');
     }
 
+
     public function products()
     {
-        return $this->hasMany(PlantProduct::class);
+        return $this->hasMany(PlantProduct::class, 'plant_id');
     }
+
 }
 
