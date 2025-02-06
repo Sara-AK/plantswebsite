@@ -14,7 +14,7 @@
     <section class="event-single pt-130 pb-130">
         <div class="container">
             <div class="row g-4">
-                <div class="event-two__item">
+                <div class="col-lg-6">
                     <div class="event-two__content px-0">
                         <h3 class="mb-40">{{ $plant->name }}</h3>
 
@@ -49,16 +49,26 @@
                     </div>
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="image">
-                            <img src="{{ $plant->picture_url }}" alt="{{ $plant->name }}" class="img-fluid rounded">
-                        </div>
+                <!-- Image Section - Right Half -->
+                <div class="col-lg-6">
+                    <div class="image">
+                        @php
+                            $pictures = is_array($plant->pictures) ? $plant->pictures : json_decode($plant->pictures, true);
+                        @endphp
+
+                        @if ($pictures)
+                            @foreach ($pictures as $picture)
+                                <img src="{{ $picture }}" alt="{{ $plant->name }}" class="img-fluid rounded mb-3" style="max-width: 300px ; height: auto;">
+                            @endforeach
+                        @else
+                            <img src="default-image.jpg" alt="{{ $plant->name }}" class="img-fluid rounded" style="max-width: 300px; height: auto;">
+                        @endif
                     </div>
                 </div>
 
-                <p class="mt-40 mb-30">{{ $plant->additional_details }}</p>
             </div>
+
+            <p class="mt-40 mb-30">{{ $plant->additional_details }}</p>
         </div>
     </section>
     <!-- Plant Details Section End -->

@@ -11,7 +11,7 @@
                     </a>
                 </div>
                 <ul class="main-menu">
-                    <li><a class="text-white" href="plantproducts/1">About Us</a></li>
+                    <li><a class="text-white" href="/">Home</a></li>
                     <li><a class="text-white" href="#">Services</a></li>
                     <li><a class="text-white" href="{{ url('contact') }}">Contact Us</a></li>
                     <li class="menu-btn">
