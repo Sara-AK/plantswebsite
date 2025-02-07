@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home Page')
+@section('title', 'Dashboard Page')
 @section('content')
 
     <!-- Banner area start here -->
@@ -152,26 +152,24 @@
             <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Plants</h2>
         </div>
         <div class="row g-0">
-            @foreach ($plants->slice(0, 4) as $plant)
-                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
-                    <div class="project-five__item sub-bg">
-                        <div class="project-five__content bg-white">
-                            <h3>{{ $plant->name }}</h3>
-                            <p>{{ $plant->description }}</p>
-                            <a href="plants/{{ $plant->id }}" class="btn-two">
-                                <span>Care Tips</span>
-                                <i class="fa-solid fa-angles-right"></i>
-                            </a>
+            @if(isset($plants) && count($plants) > 0)
+                @foreach ($plants->slice(0, 4) as $plant)
+                    <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                        <div class="project-five__item sub-bg">
+                            <div class="project-five__content bg-white">
+                                <h3>{{ $plant->name }}</h3>
+                                <p>{{ $plant->description }}</p>
+                                <a href="plants/{{ $plant->id }}" class="btn-two">
+                                    <span>Care Tips</span>
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
-                    <div class="project-five__image">
-                        <img src="{{ is_array($plant->pictures) ? $plant->pictures[0] : json_decode($plant->pictures, true)[0] ?? 'default-image.jpg' }}" alt="{{ $plant->name }}" style="max-height: 350px; width: auto;">
-                    </div>
-                </div>
-
-            @endforeach
+                @endforeach
+            @else
+                <p>No plants found.</p>
+            @endif
         </div>
         <div class="text-center mt-5">
             <a href="{{ route('public.plants.index') }}" class="btn-one">
