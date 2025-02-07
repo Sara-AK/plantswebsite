@@ -222,7 +222,7 @@
 
     <main>
         <!-- Page banner area start here -->
-        <section class="page-banner bg-image pt-130 pb-130">
+        {{-- <section class="page-banner bg-image pt-130 pb-130">
             <div class="container">
                 <h2 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">Log in</h2>
                 <div class="breadcrumb-list wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
@@ -230,7 +230,7 @@
                     <span class="primary-color">Log in</span>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- Page banner area end here -->
 
         <!-- Login area start here -->
@@ -250,16 +250,34 @@
                         <div class="col-xxl-4">
                             <div class="login__content">
                                 <h2 class="text-white mb-65">Welcome Back</h2>
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                                 <div class="form-area login__form">
-                                    <form action="#0">
-                                        <input type="email" placeholder="Email">
-                                        <input class="mt-30" type="password" placeholder="Enter Password">
-                                        <button class="mt-30">Sign In</button>
+                                    <form action="{{ route('login_store') }}" method="POST">
+                                        @csrf
+                                        <input type="email" name="email" placeholder="Email" required>
+                                        <input class="mt-30" type="password" name="password" placeholder="Enter Password" required>
+                                        <button class="mt-30" type="submit">Sign In</button>
                                         {{-- <div class="radio-btn mt-30">
                                             <span></span>
                                             <p>I accept your terms & conditions</p>
                                         </div> --}}
                                     </form>
+
                                     <!-- <span class="or pt-30 pb-40">OR</span> -->
                                 </div>
                                 <!-- <div class="login__with">
