@@ -200,7 +200,7 @@
                     <img src="" alt="{{ $product->name }}">
                 </div>
             </div>
-            <h3><a href="#">{{ $product->name }}</a></h3>
+            <h3>{{ $product->name }}</h3>
             <p>{{ $product->description }}</p>
             <p>Price: ${{ $product->price }}</p>
             <a class="blog-two__item-arrow" href="{{ route('public.products.show', $product->id) }}"><i
