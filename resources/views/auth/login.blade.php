@@ -41,7 +41,7 @@
     <!-- Preloader area end -->
 
     <!-- Header area start here -->
-    <header class="header">
+    {{-- <header class="header">
         <div class="header-top d-none d-lg-block">
             <div class="container">
                 <div class="header-top-wrp">
@@ -217,7 +217,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --}}
     <!-- Header area end here -->
 
     <main>
@@ -242,8 +242,8 @@
                             <div class="login__image">
                                 <img src="assets/images/login/login-image1.jpg" alt="image">
                                 <div class="btn-wrp">
-                                    <a class="active" href="login.html">sign in</a>
-                                    <a href="register.html">create account</a>
+                                    <a class="active" href="{{route('login')}}">sign in</a>
+                                    <a href="{{route('register')}}">create account</a>
                                 </div>
                             </div>
                         </div>

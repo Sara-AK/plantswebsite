@@ -242,8 +242,8 @@
                             <div class="login__image">
                                 <img src="assets/images/register/res-image1.jpg" alt="image">
                                 <div class="btn-wrp">
-                                    <a href="login.html">sign in</a>
-                                    <a class="active" href="register.html">create account</a>
+                                    <a href="{{ route('login')}}">sign in</a>
+                                    <a class="active" href="{{route('register')}}">create account</a>
                                 </div>
                             </div>
                         </div>
