@@ -13,9 +13,20 @@
                 <ul class="main-menu">
                     <li><a class="text-white" href="/">Home</a></li>
                     <li><a class="text-white" href="{{ url('contact') }}">Contact Us</a></li>
-                    <li class="menu-btn">
-                        <a href="{{ route('register') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
-                    </li>
+                    @auth
+                        <li class="menu-btn">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-link text-white" style="border: none; background: none; cursor: pointer;">
+                                    Logout <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="menu-btn">
+                            <a href="{{ route('register') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>

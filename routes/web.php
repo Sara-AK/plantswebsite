@@ -73,21 +73,35 @@ Route::middleware('role:user')->group(function () {
 Route::middleware('role:gardener')->group(function () {
     Route::get('/gardener/dashboard', [GardenerController::class, 'index']);
     Route::get('/gardener/inquiries', [GardenerController::class, 'viewInquiries']);
+
+    Route::resource('plants', PlantController::class)->names([
+        'index' => 'admin.plants.index',
+        'create' => 'admin.plants.create',
+        'store' => 'admin.plants.store',
+        'edit' => 'admin.plants.edit',
+        'update' => 'admin.plants.update',
+        'destroy' => 'admin.plants.destroy',
+    ]);
 });
 
 // ✅ Seller Routes
 Route::middleware('role:seller')->group(function () {
     Route::get('/seller/dashboard', [SellerController::class, 'index']);
     Route::get('/seller/items', [SellerController::class, 'store']);
+
+    Route::resource('plant-products', PlantProductController::class)->names([
+        'index' => 'admin.products.index',
+        'create' => 'admin.products.create',
+        'store' => 'admin.products.store',
+        'edit' => 'admin.products.edit',
+        'update' => 'admin.products.update',
+        'destroy' => 'admin.products.destroy',
+    ]);
 });
 
 // ✅ Register Routes
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
-
-// Route::get('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
-// Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register.store');
-
 
 // ✅ Blog Posts Route
 Route::get('/posts', [PostsController::class, 'index'])->name('posts_index');
