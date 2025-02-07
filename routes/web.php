@@ -13,6 +13,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleRequestController;
 
 // Homepage route (Ensure WelcomeController exists)
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
@@ -105,6 +106,14 @@ Route::get('/register', [RegisteredUserController::class, 'create'])->name('regi
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+// Store request (user action)
+Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
+
+// Update request (admin action)
+Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])->name('role.request.update')->middleware('admin');
+
+Route::get('/admin/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests')->middleware('admin');
 
 
 // Blog Posts Route
