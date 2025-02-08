@@ -27,10 +27,7 @@ class PlantController extends Controller
 
 
 
-
-
-
-    public function show($id)
+    public function publicShow($id)
     {
         $plant = Plant::findOrFail($id); // Fetch plant by ID, return 404 if not found
 
