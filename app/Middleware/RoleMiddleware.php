@@ -8,26 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    // public function handle(Request $request, Closure $next, $role)
-    // {
-    //     if (!Auth::check() || Auth::user()->role !== $role) {
-    //         abort(403, 'Unauthorized Access');
-    //     }
-
-    //     return $next($request);
-    // }
-
     public function handle(Request $request, Closure $next, $role = null)
     {
         if (!$role) {
-            dd("Middleware role parameter is missing!"); // Debugging output
+            abort(500, 'Middleware role parameter is missing! Check your route definitions.');
         }
 
-        if (!Auth::check() || Auth::user()->role !== $role) {
-            abort(403, 'Unauthorized Access');
+        if (!Auth::check()) {
+            abort(403, 'User is not authenticated!');
+        }
+
+        if (Auth::user()->role !== $role) {
+            abort(403, 'Unauthorized Access! Your role: ' . Auth::user()->role . ', Required role: ' . $role);
         }
 
         return $next($request);
     }
-
 }

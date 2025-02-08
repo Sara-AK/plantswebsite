@@ -14,39 +14,40 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleRequestController;
-use App\Middleware\AdminMiddleware;
 
-// Homepage route (Ensure WelcomeController exists)
+// =========================
+// 🚀 Public Routes
+// =========================
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-// Public Plant Routes
 Route::get('/plants', [PlantController::class, 'publicIndex'])->name('public.plants.index');
 Route::get('/plants/{plant}', [PlantController::class, 'publicShow'])->name('public.plants.show');
 
-// Public Category Routes
 Route::get('/categories', [CategoryController::class, 'index'])->name('public.categories.index');
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('public.categories.show');
 
-// Public Plant Product Routes
 Route::get('/products', [PlantProductController::class, 'publicIndex'])->name('public.products.index');
 Route::get('/products/{product}', [PlantProductController::class, 'publicShow'])->name('public.products.show');
 
-// Dashboard route (Authenticated & Verified users only)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// =========================
+// 🔒 Authenticated & Verified Users
+// =========================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// Authentication Middleware Group
-Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Admin Routes (Only accessible to Admins)
+// =========================
+// 🛠 Admin Routes (Only Admins)
+// =========================
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index']);
-    Route::delete('/user/{id}', [AdminController::class, 'destroy']);
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('admin.user.delete');
 
     Route::resource('plants', PlantController::class)->names([
         'index' => 'admin.plants.index',
@@ -69,41 +70,55 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
 });
 
-// User Routes
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/user/dashboard', [UserController::class, 'index']);
+// =========================
+// 👤 User Routes
+// =========================
+Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 });
 
-// Gardener Routes
+// =========================
+// 🌱 Gardener Routes
+// =========================
 Route::middleware(['auth', 'role:gardener'])->prefix('gardener')->group(function () {
-    Route::get('/dashboard', [GardenerController::class, 'index']);
-    Route::get('/inquiries', [GardenerController::class, 'viewInquiries']);
+    Route::get('/dashboard', [GardenerController::class, 'index'])->name('gardener.dashboard');
+    Route::get('/inquiries', [GardenerController::class, 'viewInquiries'])->name('gardener.inquiries');
 });
 
-// Seller Routes
+// =========================
+// 🛒 Seller Routes
+// =========================
 Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
-    Route::get('/dashboard', [SellerController::class, 'index']);
-    Route::get('/items', [SellerController::class, 'store']);
+    Route::get('/dashboard', [SellerController::class, 'index'])->name('seller.dashboard');
+    Route::get('/items', [SellerController::class, 'store'])->name('seller.items');
 });
 
-// Register Routes
+// =========================
+// 🔑 Authentication Routes
+// =========================
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
-// Store request (user action)
+// =========================
+// 🏷️ Role Request Routes
+// =========================
 Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
 
-// Update request (admin action)
 Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])
-    ->name('role.request.update')->middleware(['auth', 'role:admin']);
+    ->name('role.request.update')
+    ->middleware(['auth', 'role:admin']);
 
-// Blog Posts Route
-Route::get('/posts', [PostsController::class, 'index'])->name('posts_index');
+// =========================
+// 📝 Blog Posts Routes
+// =========================
+Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 
-// Check request status
+// =========================
+// 🛠️ Miscellaneous Routes
+// =========================
 Route::get('/role-request-status', [UserController::class, 'showRequestStatus'])->middleware('auth');
 
-// Authentication Routes
+// ✅ Include Laravel authentication routes
 require __DIR__.'/auth.php';
