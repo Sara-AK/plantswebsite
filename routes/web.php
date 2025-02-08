@@ -14,7 +14,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleRequestController;
-use App\Http\Middleware\AdminMiddleware;
+use App\Middleware\AdminMiddleware;
 
 // Homepage route (Ensure WelcomeController exists)
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
@@ -37,14 +37,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Authentication Middleware Group
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Admin Routes (Only accessible to Admins)
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::delete('/user/{id}', [AdminController::class, 'destroy']);
 
@@ -56,65 +56,34 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         'update' => 'admin.plants.update',
         'destroy' => 'admin.plants.destroy',
     ]);
+
+    Route::resource('plant-products', PlantProductController::class)->names([
+        'index' => 'admin.products.index',
+        'create' => 'admin.products.create',
+        'store' => 'admin.products.store',
+        'edit' => 'admin.products.edit',
+        'update' => 'admin.products.update',
+        'destroy' => 'admin.products.destroy',
+    ]);
+
+    Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
 });
 
-
-// Route::middleware('role:admin')->prefix('admin')->group(function () {
-//     Route::get('/dashboard', [AdminController::class, 'index']);
-//     Route::delete('/user/{id}', [AdminController::class, 'destroy']);
-
-//         Route::resource('plants', PlantController::class)->names([
-//             'index' => 'admin.plants.index',
-//             'create' => 'admin.plants.create',
-//             'store' => 'admin.plants.store',
-//             'edit' => 'admin.plants.edit',
-//             'update' => 'admin.plants.update',
-//             'destroy' => 'admin.plants.destroy',
-//         ]);
-
-//     Route::resource('plant-products', PlantProductController::class)->names([
-//         'index' => 'admin.products.index',
-//         'create' => 'admin.products.create',
-//         'store' => 'admin.products.store',
-//         'edit' => 'admin.products.edit',
-//         'update' => 'admin.products.update',
-//         'destroy' => 'admin.products.destroy',
-//     ]);
-// });
-
 // User Routes
-Route::middleware('role:user')->group(function () {
+Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard', [UserController::class, 'index']);
 });
 
 // Gardener Routes
-Route::middleware('role:gardener')->group(function () {
-    Route::get('/gardener/dashboard', [GardenerController::class, 'index']);
-    Route::get('/gardener/inquiries', [GardenerController::class, 'viewInquiries']);
-
-    // Route::resource('plants', PlantController::class)->names([
-    //     'index' => 'admin.plants.index',
-    //     'create' => 'admin.plants.create',
-    //     'store' => 'admin.plants.store',
-    //     'edit' => 'admin.plants.edit',
-    //     'update' => 'admin.plants.update',
-    //     'destroy' => 'admin.plants.destroy',
-    // ]);
+Route::middleware(['auth', 'role:gardener'])->prefix('gardener')->group(function () {
+    Route::get('/dashboard', [GardenerController::class, 'index']);
+    Route::get('/inquiries', [GardenerController::class, 'viewInquiries']);
 });
 
 // Seller Routes
-Route::middleware('role:seller')->group(function () {
-    Route::get('/seller/dashboard', [SellerController::class, 'index']);
-    Route::get('/seller/items', [SellerController::class, 'store']);
-
-    // Route::resource('plant-products', PlantProductController::class)->names([
-    //     'index' => 'admin.products.index',
-    //     'create' => 'admin.products.create',
-    //     'store' => 'admin.products.store',
-    //     'edit' => 'admin.products.edit',
-    //     'update' => 'admin.products.update',
-    //     'destroy' => 'admin.products.destroy',
-    // ]);
+Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
+    Route::get('/dashboard', [SellerController::class, 'index']);
+    Route::get('/items', [SellerController::class, 'store']);
 });
 
 // Register Routes
@@ -127,20 +96,14 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
 
 // Update request (admin action)
-Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])->name('role.request.update')->middleware('admin');
-
-Route::get('/admin/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests')->middleware('admin');
-
-Route::middleware([AdminMiddleware::class])->group(function () {
-    Route::get('/admin/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
-});
+Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])
+    ->name('role.request.update')->middleware(['auth', 'role:admin']);
 
 // Blog Posts Route
 Route::get('/posts', [PostsController::class, 'index'])->name('posts_index');
 
-// check request status
+// Check request status
 Route::get('/role-request-status', [UserController::class, 'showRequestStatus'])->middleware('auth');
-
 
 // Authentication Routes
 require __DIR__.'/auth.php';

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
@@ -20,8 +20,7 @@ class AdminMiddleware
 
         if (!Auth::check() || !Auth::user()->isAdmin()) {
             // abort(403, 'Unauthorized Access');
-
-            return $next($request);
         }
+        return $next($request);
     }
 }
