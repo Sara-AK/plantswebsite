@@ -49,9 +49,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function roleRequests(): HasOne
+    public function roleRequests()
     {
-        return $this->hasOne(RoleRequest::class);
+        return $this->hasOne(RoleRequest::class, 'user_id')->latest();
     }
 
     public function isAdmin()

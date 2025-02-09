@@ -68,6 +68,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     ]);
 
     Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/admin/assign', [AdminController::class, 'showAssignAdminForm'])->name('admin.assign');
+        Route::post('/admin/assign', [AdminController::class, 'assignAdmin'])->name('admin.assign.post');
+    });
 });
 
 // =========================
@@ -104,11 +109,26 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 // =========================
 // 🏷️ Role Request Routes
 // =========================
-Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
+// Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
 
+// Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
+// Route::post('/role/request/cancel', [RoleRequestController::class, 'cancel'])->name('role.request.cancel');
+// Route::post('/role/request/modify', [RoleRequestController::class, 'modify'])->name('role.request.modify');
 Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])
     ->name('role.request.update')
     ->middleware(['auth', 'role:admin']);
+Route::get('/role-request', function () {
+    return view('role_request');
+})->middleware('auth')->name('role.request.view');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
+    Route::post('/role/request/cancel', [RoleRequestController::class, 'cancel'])->name('role.request.cancel');
+    Route::post('/role/request/modify', [RoleRequestController::class, 'modify'])->name('role.request.modify');
+    Route::post('/role/request/remove', [RoleRequestController::class, 'requestRoleRemoval'])->name('role.request.remove'); // New Route
+    Route::post('/role/request/change', [RoleRequestController::class, 'requestRoleChange'])->name('role.request.change'); // New Route
+});
+
 
 // =========================
 // 📝 Blog Posts Routes
