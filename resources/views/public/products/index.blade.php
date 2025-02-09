@@ -19,7 +19,7 @@
                             <div class="image mb-30">
                                 <img src="{{ $product->picture_url }}" alt="{{ $product->name }}">
                             </div>
-                            <h3><a href="{{ route('plants.show', $product->id) }}">{{ $product->name }}</a></h3>
+                            <h3><a href="{{ route('public.products.show', $product->id) }}">{{ $product->name }}</a></h3>
                             <p>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</p>
 
                             <!-- Price Display -->
@@ -33,6 +33,19 @@
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
+
+                            <!-- 🛒 Add to Cart Button (Only for Authenticated Users) -->
+                            @auth
+                                <div class="text-center mt-3">
+                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">
+                                            🛒 Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
+                            @endauth
+
                         </div>
                     </div>
                 @endforeach
@@ -43,4 +56,5 @@
             </div>
         </div>
     </section>
+
 @endsection

@@ -13,6 +13,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
 
 // =========================
@@ -108,6 +109,17 @@ Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () 
     Route::get('/dashboard', [SellerController::class, 'index'])->name('seller.dashboard');
     Route::get('/items', [SellerController::class, 'store'])->name('seller.items');
 });
+
+// =========================
+// 🛒 shopping cart Routes 
+// =========================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [ShoppingCartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{id}', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/remove/{id}', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::post('/cart/clear', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
+});
+
 
 // =========================
 // 🔑 Authentication Routes

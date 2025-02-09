@@ -76,6 +76,15 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        @if(Auth::check() && request()->is('products'))
+                            <div class="shopping-cart">
+                                <a href="{{ route('cart.index') }}" class="btn btn-primary">
+                                    🛒 Cart ({{ session('cart') ? count(session('cart')) : 0 }})
+                                </a>
+                            </div>
+                        @endif
+                    </li>
                     @else
                     <li class="menu-btn">
                         <a href="{{ route('register') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
