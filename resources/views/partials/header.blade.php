@@ -55,11 +55,11 @@
                                     </a>
                                 </li>
                             @endif --}}
-                            <li>
+                            {{-- <li>
                                 @if(Auth::user()->role === 'admin')
                                     <li><a class="dropdown-item" href="{{ route('admin.users') }}"><i class="fa-solid fa-users"></i> Manage Users</a></li>
                                 @endif
-                            </li>
+                            </li> --}}
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

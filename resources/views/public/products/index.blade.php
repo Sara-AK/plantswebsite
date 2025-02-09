@@ -12,6 +12,18 @@
 
     <section class="donation-inner pb-130">
         <div class="container">
+
+            <!-- ✅ Show "Add Product" button only for Sellers & Admins -->
+            @auth
+                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'seller')
+                    <div class="mb-4 text-end">
+                        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
+                            ➕ Add New Product
+                        </a>
+                    </div>
+                @endif
+            @endauth
+
             <div class="row g-4">
                 @foreach ($products as $product)
                     <div class="col-lg-4 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
