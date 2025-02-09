@@ -67,12 +67,22 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.products.destroy',
     ]);
 
-    Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
+    // Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
 
-    Route::middleware(['auth', 'admin'])->group(function () {
-        Route::get('/admin/assign', [AdminController::class, 'showAssignAdminForm'])->name('admin.assign');
-        Route::post('/admin/assign', [AdminController::class, 'assignAdmin'])->name('admin.assign.post');
-    });
+
+    // Route::get('/admin/assign', [AdminController::class, 'showAssignAdminForm'])->name('admin.assign');
+    // Route::post('/admin/assign', [AdminController::class, 'assignAdmin'])->name('admin.assign.post');
+
+
+    Route::post('/admin/register-user', [AdminController::class, 'registerUser'])->name('admin.register.user');
+
+    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
+    Route::post('/admin/user/delete/{user}', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
+    Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
+    Route::post('/admin/user/assign-admin/{user}', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
+    Route::post('/admin/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
+
+
 });
 
 // =========================
@@ -80,6 +90,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 // =========================
 Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::post('/account/delete', [UserController::class, 'deleteAccount'])->name('account.delete');
 });
 
 // =========================
@@ -125,8 +136,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
     Route::post('/role/request/cancel', [RoleRequestController::class, 'cancel'])->name('role.request.cancel');
     Route::post('/role/request/modify', [RoleRequestController::class, 'modify'])->name('role.request.modify');
-    Route::post('/role/request/remove', [RoleRequestController::class, 'requestRoleRemoval'])->name('role.request.remove'); // New Route
-    Route::post('/role/request/change', [RoleRequestController::class, 'requestRoleChange'])->name('role.request.change'); // New Route
+    // Route::post('/role/request/remove', [RoleRequestController::class, 'requestRoleRemoval'])->name('role.request.remove');
+    Route::post('/role/request/change', [RoleRequestController::class, 'requestRoleChange'])->name('role.request.change');
+    Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])->name('role.remove');
 });
 
 

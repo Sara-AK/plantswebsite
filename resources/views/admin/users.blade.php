@@ -1,0 +1,113 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h2>Manage Users</h2>
+
+    {{-- Register User Form --}}
+    <div class="card mb-4">
+        <div class="card-header">Register New User</div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('admin.user.register') }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="role" class="form-label">Select Role</label>
+                    <select class="form-select" name="role" id="role" required>
+                        <option value="user">User</option>
+                        <option value="gardener">Gardener</option>
+                        <option value="seller">Seller</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-user-plus"></i> Register User</button>
+            </form>
+        </div>
+    </div>
+
+    {{-- Role Requests Section --}}
+    <h3>Pending Role Requests</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Requested Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($roleRequests as $request)
+                <tr>
+                    <td>{{ $request->user->name }}</td>
+                    <td>{{ ucfirst($request->requested_role) }}</td>
+                    <td>
+                        <form method="POST" action="{{ route('admin.role.request.update', $request->id) }}" class="d-inline">
+                            @csrf
+                            <input type="hidden" name="status" value="approved">
+                            <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Approve</button>
+                        </form>
+
+                        <form method="POST" action="{{ route('admin.role.request.update', $request->id) }}" class="d-inline">
+                            @csrf
+                            <input type="hidden" name="status" value="rejected">
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i> Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    {{-- User List --}}
+    <h3>All Users</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ ucfirst($user->role) }}</td>
+                    <td>
+                        @if($user->role !== 'admin')
+                            <form method="POST" action="{{ route('admin.user.assignAdmin', $user->id) }}" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-user-shield"></i> Assign Admin</button>
+                            </form>
+                        @endif
+
+                        @if($user->role !== 'admin')
+                            <form method="POST" action="{{ route('admin.user.delete', $user->id) }}" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </form>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection

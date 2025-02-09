@@ -100,20 +100,47 @@ class RoleRequestController extends Controller
         return back()->with('success', 'Your role request has been submitted.');
     }
 
-    public function requestRoleRemoval()
+// no need for this function
+    // public function requestRoleRemoval()
+    // {
+    //     // Prevent admins from removing their roles
+    //     if (Auth::user()->role === 'admin') {
+    //         return back()->with('error', 'Admins cannot remove their role.');
+    //     }
+
+    //     // Prevent duplicate removal requests
+    //     $existingRequest = RoleRequest::where('user_id', Auth::id())
+    //                                   ->where('requested_role', 'user')
+    //                                   ->where('status', 'pending')
+    //                                   ->first();
+
+    //     if ($existingRequest) {
+    //         return back()->with('error', 'You already have a pending role removal request.');
+    //     }
+
+
+    //     // Create a role removal request (downgrade to 'user')
+    //     RoleRequest::create([
+    //         'user_id' => Auth::id(),
+    //         'requested_role' => 'user',
+    //         'status' => 'pending',
+    //     ]);
+
+    //     return back()->with('success', 'Your role removal request has been submitted.');
+    // }
+    public function removeRole()
     {
+        // Only allow non-user roles to change their role to 'user'
         if (Auth::user()->role === 'user') {
-            return back()->with('error', 'You do not have a role to remove.');
+            return back()->with('error', 'You are already a regular user.');
         }
 
-        RoleRequest::create([
-            'user_id' => Auth::id(),
-            'requested_role' => 'user', // Requesting to revert to a normal user
-            'status' => 'pending',
-        ]);
+        // Update the user's role to 'user'
+        Auth::user()->update(['role' => 'user']);
 
-        return back()->with('success', 'Your role removal request has been submitted.');
+        return back()->with('success', 'Your role has been removed. You are now a regular user.');
     }
+
 
     public function requestRoleChange(Request $request)
     {
