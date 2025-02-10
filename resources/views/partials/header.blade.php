@@ -55,11 +55,11 @@
                                     </a>
                                 </li>
                             @endif --}}
-                            <li>
+                            {{-- <li>
                                 @if(Auth::user()->role === 'admin')
                                     <li><a class="dropdown-item" href="{{ route('admin.users') }}"><i class="fa-solid fa-users"></i> Manage Users</a></li>
                                 @endif
-                            </li>
+                            </li> --}}
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -75,6 +75,15 @@
                                 @endif
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        @if(Auth::check() && request()->is('products'))
+                            <div class="shopping-cart">
+                                <a href="{{ route('cart.index') }}" class="btn btn-primary">
+                                    🛒 Cart ({{ session('cart') ? count(session('cart')) : 0 }})
+                                </a>
+                            </div>
+                        @endif
                     </li>
                     @else
                     <li class="menu-btn">

@@ -13,6 +13,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
 
 // =========================
@@ -67,12 +68,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.products.destroy',
     ]);
 
-    // Route::get('/role-requests', [AdminController::class, 'roleRequests'])->name('admin.role.requests');
-
-
-    // Route::get('/admin/assign', [AdminController::class, 'showAssignAdminForm'])->name('admin.assign');
-    // Route::post('/admin/assign', [AdminController::class, 'assignAdmin'])->name('admin.assign.post');
-
+    Route::get('/manage-products', [PlantProductController::class, 'manageProducts'])->name('admin.products.manage');
 
     Route::post('/admin/register-user', [AdminController::class, 'registerUser'])->name('admin.register.user');
 
@@ -81,8 +77,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
     Route::post('/admin/user/assign-admin/{user}', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
     Route::post('/admin/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
-
-
 });
 
 // =========================
@@ -107,7 +101,31 @@ Route::middleware(['auth', 'role:gardener'])->prefix('gardener')->group(function
 Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
     Route::get('/dashboard', [SellerController::class, 'index'])->name('seller.dashboard');
     Route::get('/items', [SellerController::class, 'store'])->name('seller.items');
+    // Route::get('/products/create', [PlantProductController::class, 'create'])->name('admin.products.create');
+    // Route::post('/products/store', [PlantProductController::class, 'store'])->name('admin.products.store');
+
+    Route::get('/manage-products', [PlantProductController::class, 'manageProducts'])->name('admin.products.manage');
+
+    Route::get('/products/create', [PlantProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products/store', [PlantProductController::class, 'store'])->name('admin.products.store');
+
+    Route::get('/products/{product}/edit', [PlantProductController::class, 'edit'])->name('admin.products.edit');
+    Route::patch('/products/{product}', [PlantProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/products/{product}', [PlantProductController::class, 'destroy'])->name('admin.products.destroy');
+
+
 });
+
+// =========================
+// 🛒 shopping cart Routes
+// =========================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [ShoppingCartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{id}', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/remove/{id}', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::post('/cart/clear', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
+});
+
 
 // =========================
 // 🔑 Authentication Routes

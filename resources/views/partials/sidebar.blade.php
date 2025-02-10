@@ -8,6 +8,18 @@
         stability.
     </p>
     <ul class="info py-4 mt-65 bor-top bor-bottom">
+    @auth
+        @if(auth()->user()->role === 'admin' || auth()->user()->role === 'seller')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.products.manage') }}">🛠 Manage Products</a>
+            </li>
+        @endif
+        @if(Auth::user()->role === 'admin')
+            <li><a class="dropdown-item" href="{{ route('admin.users') }}"><i class="fa-solid fa-users"></i> Manage Users</a></li>
+        @endif
+    @endauth
+    </ul>
+    <ul class="info py-4 mt-65 bor-top bor-bottom">
         <li><i class="fa-solid primary-color fa-location-dot"></i> <a href="#0">example@example.com</a></li>
         <li class="py-4"><i class="fa-solid primary-color fa-phone-volume"></i> <a href="tel:+022659302003">+02 2659
                 302 003</a></li>
