@@ -4,46 +4,52 @@
 
 @section('content')
     <section class="content">
+        <div class="section-header text-center">
+            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                ALL PLANTS
+            </h5>
+            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Edit and Add Plants</h2>
+        </div>
         <div class="container-fluid">
             <!-- Add Plant Form -->
-            <div class="card card-success">
-                <div class="card-header bg-dark-green d-flex justify-content-between align-items-center">
+            <div class="card card-success shadow-sm rounded mb-4">
+                <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">Add Plant</h3>
                     <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#addPlantForm">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
 
-                <div id="addPlantForm" class="collapse">
+                <div id="addPlantForm" class="collapse p-3">
                     <div class="card-body">
                         <form action="{{ route('admin.plants.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="form-group col-md-6">
                                     <label>Plant Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Enter plant name" required>
+                                    <input type="text" class="form-control rounded" name="name" placeholder="Enter plant name" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Care Difficulty</label>
-                                    <input type="text" class="form-control" name="careDifficulty" placeholder="Enter care difficulty" required>
+                                    <input type="text" class="form-control rounded" name="careDifficulty" placeholder="Enter care difficulty" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="form-group col-md-6">
                                     <label>Plant Description</label>
-                                    <textarea class="form-control" rows="3" name="description" placeholder="Enter description" required></textarea>
+                                    <textarea class="form-control rounded" rows="3" name="description" placeholder="Enter description" required></textarea>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Planting Tips</label>
-                                    <textarea class="form-control" rows="3" name="caretips" placeholder="Enter tips"></textarea>
+                                    <textarea class="form-control rounded" rows="3" name="caretips" placeholder="Enter tips"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label>Add Images</label>
-                                <textarea class="form-control" rows="3" name="ImageURL" placeholder="Enter Image URL" required></textarea>
+                                <textarea class="form-control rounded" rows="3" name="ImageURL" placeholder="Enter Image URL" required></textarea>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" class="btn btn-success rounded">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -51,77 +57,76 @@
             </div>
 
             <!-- Plants List -->
-            <div class="card card-success">
-                <div class="card-header bg-dark-green d-flex justify-content-between align-items-center">
+            <div class="card card-success shadow-sm rounded">
+                <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">All Plants</h3>
                     <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#plantsTable">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
 
-                <div id="plantsTable" class="collapse show">
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover table-dark-green">
-                            <thead class="bg-dark text-light">
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-hover table-dark-green rounded">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th>Plant</th>
+                                <th class="d-none d-lg-table-cell">Description</th>
+                                <th class="d-none d-md-table-cell">Categories</th>
+                                <th class="d-none d-md-table-cell">Regions</th>
+                                <th>Images</th>
+                                <th class="d-none d-lg-table-cell">Care Difficulty</th>
+                                <th class="d-none d-lg-table-cell">Planting Tips</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($plants as $plant)
                                 <tr>
-                                    <th>Plant</th>
-                                    <th>Description</th>
-                                    <th>Categories</th>
-                                    <th>Regions</th>
-                                    <th>Images</th>
-                                    <th>Care Difficulty</th>
-                                    <th>Planting Tips</th>
-                                    <th>Actions</th>
+                                    <td>{{ $plant->name }}</td>
+                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->description, 50) }}</td>
+                                    <td class="d-none d-md-table-cell">
+                                        @foreach ($plant->categories as $category)
+                                            <span class="badge bg-success rounded-pill">{{ $category->name }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        @foreach ($plant->regions as $region)
+                                            <span class="badge bg-primary rounded-pill">{{ $region->name }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @php
+                                            $pictures = is_array($plant->pictures) ? $plant->pictures : json_decode($plant->pictures, true);
+                                        @endphp
+                                        @if ($pictures)
+                                            <img src="{{ $pictures[0] }}" alt="{{ $plant->name }}" class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;">
+                                        @else
+                                            <span class="text-muted">No Image</span>
+                                        @endif
+                                    </td>
+                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->caredifficulty, 50) }}</td>
+                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->caretips, 50) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.plants.edit', $plant->id) }}" class="btn btn-warning btn-sm rounded">Edit</a>
+                                        <form action="{{ route('admin.plants.destroy', $plant->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm rounded">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($plants as $plant)
-                                    <tr>
-                                        <td>{{ $plant->name }}</td>
-                                        <td>{{ \Illuminate\Support\Str::limit($plant->description, 50) }}</td>
-                                        <td>
-                                            @foreach ($plant->categories as $category)
-                                                <span class="badge bg-success">{{ $category->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach ($plant->regions as $region)
-                                                <span class="badge bg-primary">{{ $region->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @php
-                                                $pictures = is_array($plant->pictures) ? $plant->pictures : json_decode($plant->pictures, true);
-                                            @endphp
-                                            @if ($pictures)
-                                                <img src="{{ $pictures[0] }}" alt="{{ $plant->name }}" class="img-thumbnail" style="width: 60px; height: 60px;">
-                                            @else
-                                                <span class="text-muted">No Image</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ \Illuminate\Support\Str::limit($plant->caredifficulty, 50) }}</td>
-                                        <td>{{ \Illuminate\Support\Str::limit($plant->caretips, 50) }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.plants.edit', $plant->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ route('admin.plants.destroy', $plant->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </div>
     </section>
 
     <style>
         .bg-dark-green {
-            background-color: #2d6a32 !important;
+            background-color: #4baf47 !important;
             color: white !important;
         }
         .table-dark-green {
@@ -129,10 +134,20 @@
         }
         .btn-success {
             background-color: #2d6a32 !important;
-            border-color: #04240c !important;
+            border-color: #4baf47 !important;
         }
         .btn-success:hover {
-            background-color: #2d6a32 !important;
+            background-color: #4baf47 !important;
+        }
+        .rounded {
+            border-radius: 10px !important;
+        }
+        .rounded-pill {
+            border-radius: 50px !important;
+        }
+        .img-thumbnail {
+            border-radius: 50% !important;
+            object-fit: cover;
         }
     </style>
 
