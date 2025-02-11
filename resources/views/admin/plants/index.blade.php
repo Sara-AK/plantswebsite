@@ -12,7 +12,7 @@
         </div>
         <div class="container-fluid">
             <!-- Add Plant Form -->
-            <div class="card card-success shadow-sm rounded mb-4">
+            <div class="card shadow-sm rounded mb-4">
                 <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">Add Plant</h3>
                     <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#addPlantForm">
@@ -31,9 +31,10 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Care Difficulty</label>
-                                    <input type="text" class="form-control rounded" name="careDifficulty" placeholder="Enter care difficulty" required>
+                                    <input type="text" class="form-control rounded" name="caredifficulty" placeholder="Enter care difficulty" required>
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="form-group col-md-6">
                                     <label>Plant Description</label>
@@ -44,10 +45,32 @@
                                     <textarea class="form-control rounded" rows="3" name="caretips" placeholder="Enter tips"></textarea>
                                 </div>
                             </div>
+
                             <div class="form-group mb-3">
-                                <label>Add Images</label>
-                                <textarea class="form-control rounded" rows="3" name="ImageURL" placeholder="Enter Image URL" required></textarea>
+                                <label>Plant Image (URL)</label>
+                                <input type="text" class="form-control rounded" name="pictures" placeholder="Enter Image URL" required>
                             </div>
+
+                            <div class="form-group">
+                                <label for="categories">Categories</label>
+                                <select name="categories[]" id="categories" class="form-control select2" multiple="multiple" data-placeholder="Select categories" required>
+                                    @foreach($allCategories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="regions">Regions</label>
+                                <select name="regions[]" id="regions" class="form-control select2" multiple="multiple" data-placeholder="Select regions" required>
+                                    @foreach($allRegions as $region)
+                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success rounded">Submit</button>
                             </div>
@@ -57,7 +80,7 @@
             </div>
 
             <!-- Plants List -->
-            <div class="card card-success shadow-sm rounded">
+            <div class="card shadow-sm rounded">
                 <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">All Plants</h3>
                     <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#plantsTable">
@@ -73,7 +96,7 @@
                                 <th class="d-none d-lg-table-cell">Description</th>
                                 <th class="d-none d-md-table-cell">Categories</th>
                                 <th class="d-none d-md-table-cell">Regions</th>
-                                <th>Images</th>
+                                <th>Image</th>
                                 <th class="d-none d-lg-table-cell">Care Difficulty</th>
                                 <th class="d-none d-lg-table-cell">Planting Tips</th>
                                 <th>Actions</th>
@@ -96,9 +119,10 @@
                                     </td>
                                     <td>
                                         @php
-                                            $pictures = is_array($plant->pictures) ? $plant->pictures : json_decode($plant->pictures, true);
+                                            $pictures = is_array($plant->pictures) ? $plant->pictures : (is_string($plant->pictures) ? json_decode($plant->pictures, true) : []);
                                         @endphp
-                                        @if ($pictures)
+
+                                        @if (!empty($pictures))
                                             <img src="{{ $pictures[0] }}" alt="{{ $plant->name }}" class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;">
                                         @else
                                             <span class="text-muted">No Image</span>

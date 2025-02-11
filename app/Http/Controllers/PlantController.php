@@ -19,8 +19,8 @@ class PlantController extends Controller
     public function index()
     {
         $plants = Plant::with(['categories', 'regions'])->get();
-        $allCategories = PlantCategory::all();
-        $allRegions = Region::all();
+        $allCategories = PlantCategory::all(); // Load all categories
+        $allRegions = Region::all(); // Load all regions
 
         return view('admin.plants.index', compact('plants', 'allCategories', 'allRegions'));
     }
@@ -71,4 +71,39 @@ class PlantController extends Controller
 
         return redirect()->route('admin.plants.index')->with('success', 'Plant saved!');
     }
+
+    public function store(Request $request)
+    {
+        // Validate input fields
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'caredifficulty' => 'required|string|max:255',
+            'caretips' => 'nullable|string',
+            'pictures' => 'required|url',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:plantcategories,id',
+            'regions' => 'required|array',
+            'regions.*' => 'exists:regions,id',
+        ]);
+
+
+        // Create the plant
+        $plant = Plant::create($validated);
+
+        // Sync categories and regions
+        $plant->categories()->sync($validated['categories']);
+        $plant->regions()->sync($validated['regions']);
+
+        return redirect()->route('admin.plants.index')->with('success', 'Plant created successfully.');
+    }
+
+    public function destroy(Plant $plant)
+    {
+
+        $plant->delete();
+        return redirect()->route('admin.plants.index')->with('success', 'Plant deleted successfully.');
+    }
+
+
 }

@@ -24,15 +24,51 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+        <!-- Remove these duplicate Select2 includes -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<!-- Remove duplicate jQuery includes -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+
 
 
     @stack('styles')
 </head>
+<!-- jQuery (Make sure it's loaded first) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+<!-- Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+<!-- AdminLTE -->
+<script src="{{ asset('vendor/admin-lte/dist/js/adminlte.min.js') }}"></script>
+
+<!-- Initialize Select2 -->
+<script>
+    $(document).ready(function () {
+        $('#categories, #regions').select2({
+            theme: 'bootstrap4', // Use AdminLTE Bootstrap 4 theme
+            placeholder: "Select options", // Optional placeholder
+            allowClear: true,
+            width: '100%' // Ensures proper width
+        });
+    });
+</script>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -58,7 +94,6 @@
     <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.waypoints.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
