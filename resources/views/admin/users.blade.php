@@ -120,6 +120,27 @@
                                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-user-shield"></i> Assign Admin</button>
                             </form>
                         @endif
+                        <td>
+                            {{-- Show Assign Admin button for all users except already admins --}}
+                            @if($user->role !== 'admin')
+                                <form method="POST" action="{{ route('admin.user.assignAdmin', $user->id) }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-user-shield"></i> Assign Admin
+                                    </button>
+                                </form>
+                            @endif
+
+                            {{-- Show Delete button for non-admins --}}
+                            @if($user->role !== 'admin')
+                                <form method="POST" action="{{ route('admin.user.delete', $user->id) }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
 
                         @if($user->role !== 'admin')
                             <form method="POST" action="{{ route('admin.user.delete', $user->id) }}" class="d-inline">

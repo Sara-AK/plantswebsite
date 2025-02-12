@@ -41,21 +41,34 @@ class AdminController extends Controller
     }
 
     // Assign admin role to a user
-    public function assignAdmin(Request $request)
-    {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+    // public function assignAdmin(Request $request)
+    // {
+    //     $request->validate([
+    //         'user_id' => 'required|exists:users,id',
+    //     ]);
 
-        $user = User::findOrFail($request->user_id);
-        if ($user->role === 'admin') {
-            return back()->with('error', 'This user is already an admin.');
+    //     $user = User::findOrFail($request->user_id);
+    //     if ($user->role === 'admin') {
+    //         return back()->with('error', 'This user is already an admin.');
+    //     }
+
+    //     $user->update(['role' => 'admin']);
+
+    //     return redirect()->route('admin.users')->with('success', 'User assigned as admin successfully.');
+    // }
+
+    public function assignAdmin(Request $request, User $user)
+    {
+        if (!auth()->user() || auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized');
         }
 
+        // Update user role to admin
         $user->update(['role' => 'admin']);
 
-        return redirect()->route('admin.users')->with('success', 'User assigned as admin successfully.');
+        return redirect()->back()->with('success', $user->name . ' has been assigned as an Admin.');
     }
+
 
     // Update Role Requests (Approve/Reject)
 // Update Role Requests (Approve/Reject)
