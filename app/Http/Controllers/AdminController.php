@@ -24,6 +24,14 @@ class AdminController extends Controller
 
         return view('admin.users', compact('users', 'roleRequests'));
     }
+    // public function manageUsers()
+    // {
+    //     $users = User::all(); // Fetch all users
+    //     $roleRequests = RoleRequest::orderBy('created_at', 'desc')->get(); // Fetch all role requests
+
+    //     return view('admin.users', compact('users', 'roleRequests'));
+    // }
+
 
     // Show the Assign Admin page
     public function showAssignAdminForm()
@@ -50,22 +58,25 @@ class AdminController extends Controller
     }
 
     // Update Role Requests (Approve/Reject)
-    public function updateRoleRequest(Request $request, RoleRequest $roleRequest)
-    {
-        if (!auth()->user() || auth()->user()->role !== 'admin') {
-            abort(403, 'Unauthorized');
-        }
-
-        if ($request->status == 'approved') {
-            // Assign requested role
-            $roleRequest->user->update(['role' => $roleRequest->requested_role]);
-        }
-
-        // Update role request status
-        $roleRequest->update(['status' => $request->status]);
-
-        return redirect()->route('admin.users')->with('success', 'Role request updated successfully.');
+// Update Role Requests (Approve/Reject)
+public function updateRoleRequest(Request $request, RoleRequest $roleRequest)
+{
+    if (!auth()->user() || auth()->user()->role !== 'admin') {
+        abort(403, 'Unauthorized');
     }
+
+    if ($request->status == 'approved') {
+        // Assign the requested role to the user
+        $roleRequest->user->update(['role' => $roleRequest->requested_role]);
+    }
+
+    // Update the role request status, ensuring we don't overwrite `cv_file` or `request_note`
+    $roleRequest->update([
+        'status' => $request->status,
+    ]);
+
+    return redirect()->route('admin.users')->with('success', 'Role request updated successfully.');
+}
 
     // Allow admin to delete users (except admins)
     public function deleteUser(User $user)

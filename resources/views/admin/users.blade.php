@@ -47,6 +47,8 @@
             <tr>
                 <th>User</th>
                 <th>Requested Role</th>
+                <th>Request Note</th>
+                <th>CV File</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -55,6 +57,27 @@
                 <tr>
                     <td>{{ $request->user->name }}</td>
                     <td>{{ ucfirst($request->requested_role) }}</td>
+
+                    {{-- Display Request Note --}}
+                    <td>
+                        @if(!empty($request->request_note))
+                            {{ $request->request_note }}
+                        @else
+                            <span class="text-muted">No note provided</span>
+                        @endif
+                    </td>
+
+                    {{-- Display CV File --}}
+                    <td>
+                        @if(!empty($request->cv_file))
+                            <a href="{{ asset('storage/' . $request->cv_file) }}" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-file"></i> View CV
+                            </a>
+                        @else
+                            <span class="text-muted">No CV uploaded</span>
+                        @endif
+                    </td>
+
                     <td>
                         <form method="POST" action="{{ route('admin.role.request.update', $request->id) }}" class="d-inline">
                             @csrf

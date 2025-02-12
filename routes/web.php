@@ -159,7 +159,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])->name('role.remove');
 });
 
-
 // =========================
 // 📝 Blog Posts Routes
 // =========================
