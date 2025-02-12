@@ -74,7 +74,9 @@ class RoleRequestController extends Controller
             return back()->with('error', 'No pending request found to cancel.');
         }
 
+        // Delete the pending request
         $roleRequest->delete();
+
         return back()->with('success', 'Your role request has been canceled.');
     }
 
@@ -197,13 +199,14 @@ class RoleRequestController extends Controller
     // }
     public function removeRole()
     {
-        // Only allow non-user roles to change their role to 'user'
-        if (Auth::user()->role === 'user') {
+        $user = Auth::user();
+
+        if ($user->role === 'user') {
             return back()->with('error', 'You are already a regular user.');
         }
 
         // Update the user's role to 'user'
-        Auth::user()->update(['role' => 'user']);
+        $user->update(['role' => 'user']);
 
         return back()->with('success', 'Your role has been removed. You are now a regular user.');
     }

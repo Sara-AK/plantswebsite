@@ -33,12 +33,13 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            {{-- Role Request Option (Only for non-admins) --}}
+
+                            {{-- Role Request & Management (Only for non-admins) --}}
                             @if(Auth::user()->role !== 'admin')
                                 <li>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#roleRequestModal">
                                         <i class="fa-solid {{ $roleRequest ? 'fa-clock' : 'fa-user-plus' }}"></i>
-                                        {{ $roleRequest ? 'View Role Request' : 'Request Role' }}
+                                        {{ $roleRequest ? 'Manage Role Request' : 'Request Role' }}
                                     </a>
                                 </li>
                             @endif
@@ -98,46 +99,35 @@
                 </div>
                 <div class="modal-body">
 
-                    {{-- If the user has a previous role request --}}
-                    @if($roleRequest)
+                    {{-- If the user has a pending role request --}}
+                    @if($roleRequest && $roleRequest->status === 'pending')
                         <div class="alert alert-info">
-                            Your last request for <strong>{{ ucfirst($roleRequest->requested_role) }}</strong>
+                            Your current request: <strong>{{ ucfirst($roleRequest->requested_role) }}</strong>
                             (Status: <strong>{{ ucfirst($roleRequest->status) }}</strong>)
                         </div>
 
-                        {{-- If request was rejected or canceled, allow new submission --}}
-                        @if($roleRequest->status === 'canceled' || $roleRequest->status === 'rejected')
-                            <div class="alert alert-danger">
-                                Your previous request was rejected and has been automatically canceled.
-                                You may submit a new request.
-                            </div>
+                        {{-- Cancel Role Request Button --}}
+                        <form method="POST" action="{{ route('role.request.cancel') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel Request</button>
+                        </form>
 
-                            {{-- Role Request Form --}}
-                            <form method="POST" action="{{ route('role.request') }}" enctype="multipart/form-data">
-                                @csrf
-                                {{-- Select Role --}}
-                                <label for="requested_role">Select Role:</label>
-                                <select name="requested_role" class="form-select">
-                                    <option value="gardener">Gardener</option>
-                                    <option value="seller">Seller</option>
-                                </select>
+                    {{-- If the user already has a role (not a regular user) --}}
+                    @elseif(Auth::user()->role !== 'user')
+                        <div class="alert alert-info">
+                            Your current role: <strong>{{ ucfirst(Auth::user()->role) }}</strong>
+                        </div>
 
-                                {{-- Additional Information Text Area --}}
-                                <label for="request_note" class="mt-2">Additional Information (Optional):</label>
-                                <textarea name="request_note" class="form-control" rows="3" placeholder="Explain why you are applying for this role..."></textarea>
+                        {{-- Remove Role Button --}}
+                        <form method="POST" action="{{ route('role.remove') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fa-solid fa-user-slash"></i> Remove My Role (Become Regular User)
+                            </button>
+                        </form>
 
-                                {{-- Upload CV --}}
-                                <label for="cv_file" class="mt-2">Upload CV (Optional):</label>
-                                <input type="file" name="cv_file" class="form-control" accept=".pdf,.doc,.docx">
-
-                                {{-- Submit Button --}}
-                                <button type="submit" class="btn btn-success mt-2">
-                                    <i class="fa-solid fa-user-plus"></i> Submit New Request
-                                </button>
-                            </form>
-                        @endif
+                    {{-- If no role request exists, allow new submission --}}
                     @else
-                        {{-- If no role request exists, allow new submission --}}
                         <div class="alert alert-warning">
                             You have not submitted any role request.
                         </div>

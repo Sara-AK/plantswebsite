@@ -69,6 +69,19 @@ class AdminController extends Controller
         return redirect()->back()->with('success', $user->name . ' has been assigned as an Admin.');
     }
 
+    public function changeUserRole(Request $request, User $user)
+    {
+        // Validate that the new role is one of the allowed roles
+        $request->validate([
+            'new_role' => 'required|in:user,gardener,seller',
+        ]);
+
+        // Update the user's role
+        $user->update(['role' => $request->new_role]);
+
+        return redirect()->route('admin.users')->with('success', 'User role updated successfully.');
+    }
+
 
     // Update Role Requests (Approve/Reject)
 // Update Role Requests (Approve/Reject)
