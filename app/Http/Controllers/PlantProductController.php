@@ -37,20 +37,20 @@ class PlantProductController extends Controller
     public function create()
     {
         // Ensure only sellers and admins can access
-        if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'seller') {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'seller') {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
-        $plants = \App\Models\Plant::all();
+        $plants = Plant::all();
 
         return view('public.products.create', compact('plants'));
     }
 
     public function store(Request $request)
     {
-        if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'seller'])) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'seller'])) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -70,7 +70,7 @@ class PlantProductController extends Controller
 
         PlantProduct::create($validated);
 
-        return redirect()->route('admin.products.manage')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products')->with('success', 'Product created successfully.');
     }
 
 
@@ -84,21 +84,17 @@ class PlantProductController extends Controller
     public function edit(PlantProduct $product)
     {
         // Allow only admins and the product's seller to edit
-        if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
-        return view('public.products.edit', compact('product'));
+        return view('public.products', compact('product'));
     }
 
 
     // Update the specified resource in storage
     public function update(Request $request, PlantProduct $product)
     {
-        // Allow only admins and the product's seller to update
-        if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
-            abort(403, 'Unauthorized action.');
-        }
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -115,7 +111,7 @@ class PlantProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('admin.products.manage')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
     }
 
 
@@ -123,27 +119,23 @@ class PlantProductController extends Controller
     public function destroy(PlantProduct $product)
     {
         // Allow only admins and the product's seller to delete
-        if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         $product->delete();
-        return redirect()->route('admin.products.manage')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
     }
 
 
     public function manageProducts()
     {
-        if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'seller'])) {
-            abort(403, 'Unauthorized action.');
-        }
-
         // Admins see all products, Sellers see only their own products
         $products = auth()->user()->role === 'admin'
             ? PlantProduct::paginate(10)
             : PlantProduct::where('seller_id', auth()->id())->paginate(10);
 
-        return view('public.products.manage', compact('products'));
+        return view('public.products', compact('products'));
     }
 
 
