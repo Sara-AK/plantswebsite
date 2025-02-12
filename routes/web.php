@@ -59,7 +59,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.plants.destroy',
     ]);
 
-    Route::resource('plant-products', PlantProductController::class)->names([
+    Route::resource('products', PlantProductController::class)->names([
         'index' => 'admin.products.index',
         'create' => 'admin.products.create',
         'store' => 'admin.products.store',
@@ -68,7 +68,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.products.destroy',
     ]);
 
-    Route::get('/manage-products', [PlantProductController::class, 'manageProducts'])->name('admin.products.manage');
+    // Route::get('/products', [PlantProductController::class, 'manageProducts'])->name('admin.products');
 
     Route::post('/admin/register-user', [AdminController::class, 'registerUser'])->name('admin.register.user');
 
@@ -171,4 +171,4 @@ Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/role-request-status', [UserController::class, 'showRequestStatus'])->middleware('auth');
 
 // ✅ Include Laravel authentication routes
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

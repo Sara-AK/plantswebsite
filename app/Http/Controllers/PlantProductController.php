@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlantProduct;
+use App\Models\Plant;
 use Illuminate\Http\Request;
 
 class PlantProductController extends Controller
@@ -21,12 +22,16 @@ class PlantProductController extends Controller
         return view('public.products.show', compact('product'));
     }
 
-    // Display a listing of all resources
     public function index()
     {
-        $plantProducts = PlantProduct::all();
-        return view('welcome', compact('plantProducts'));
+        $plantProducts = PlantProduct::with('plant')->get(); // Get products with associated plants
+        $allPlants = Plant::all(); // Get all plants for dropdown
+
+        return view('admin.products.index', compact('plantProducts', 'allPlants'));
     }
+
+
+
 
     // Show the form for creating a new resource
     public function create()
