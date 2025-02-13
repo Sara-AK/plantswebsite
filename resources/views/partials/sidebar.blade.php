@@ -11,7 +11,7 @@
     @auth
         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'seller')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.products.manage') }}">🛠 Manage Products</a>
+                <a class="nav-link" href="{{ route('admin.products.index') }}">🛠 Manage Products</a>
             </li>
         @endif
         @if(Auth::user()->role === 'admin')

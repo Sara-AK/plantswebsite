@@ -15,6 +15,7 @@ use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
+use App\Http\Controllers\RegionController;
 
 // =========================
 // 🚀 Public Routes
@@ -68,8 +69,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.categories.destroy',
     ])->except(['show']); // Exclude 'show' to avoid conflicts with public categories
 
-
-
     Route::resource('products', PlantProductController::class)->names([
         'index' => 'admin.products.index',
         'create' => 'admin.products.create',
@@ -79,27 +78,23 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.products.destroy',
     ]);
 
-    // Route::get('/products', [PlantProductController::class, 'manageProducts'])->name('admin.products');
+    Route::resource('regions', RegionController::class)->names([
+        'index' => 'admin.regions.index',
+        'create' => 'admin.regions.create',
+        'store' => 'admin.regions.store',
+        'edit' => 'admin.regions.edit',
+        'update' => 'admin.regions.update',
+        'destroy' => 'admin.regions.destroy',
+    ]);
 
-    Route::post('/admin/register-user', [AdminController::class, 'registerUser'])->name('admin.register.user');
+    Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.users');
+    Route::post('/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
+    Route::post('/user/{user}/assign-admin', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
+    Route::post('/user/{user}/change-role', [AdminController::class, 'changeUserRole'])->name('admin.user.changeRole');
+    Route::post('/user/{user}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
 
-    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
-    Route::post('/admin/user/delete/{user}', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
-    Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
-    Route::post('/admin/user/assign-admin/{user}', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
-    Route::post('/admin/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
-// duplicated routes - remove unfixed
-    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
-    // Register user
-    Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
-    // Assign admin role
-    Route::post('/admin/user/{user}/assign-admin', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
-    // Change user role
-    Route::post('/admin/user/{user}/change-role', [AdminController::class, 'changeUserRole'])->name('admin.user.changeRole');
-    // Delete user
-    Route::post('/admin/user/{user}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
+    Route::post('/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
 });
-
 
 // =========================
 // 👤 User Routes
@@ -123,23 +118,16 @@ Route::middleware(['auth', 'role:gardener'])->prefix('gardener')->group(function
 Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () {
     Route::get('/dashboard', [SellerController::class, 'index'])->name('seller.dashboard');
     Route::get('/items', [SellerController::class, 'store'])->name('seller.items');
-    // Route::get('/products/create', [PlantProductController::class, 'create'])->name('admin.products.create');
-    // Route::post('/products/store', [PlantProductController::class, 'store'])->name('admin.products.store');
 
-    Route::get('/manage-products', [PlantProductController::class, 'manageProducts'])->name('admin.products.manage');
-
-    Route::get('/products/create', [PlantProductController::class, 'create'])->name('admin.products.create');
-    Route::post('/products/store', [PlantProductController::class, 'store'])->name('admin.products.store');
-
-    Route::get('/products/{product}/edit', [PlantProductController::class, 'edit'])->name('admin.products.edit');
-    Route::patch('/products/{product}', [PlantProductController::class, 'update'])->name('admin.products.update');
-    Route::delete('/products/{product}', [PlantProductController::class, 'destroy'])->name('admin.products.destroy');
-
-
+    Route::get('/products/create', [PlantProductController::class, 'create'])->name('seller.products.create');
+    Route::post('/products/store', [PlantProductController::class, 'store'])->name('seller.products.store');
+    Route::get('/products/{product}/edit', [PlantProductController::class, 'edit'])->name('seller.products.edit');
+    Route::patch('/products/{product}', [PlantProductController::class, 'update'])->name('seller.products.update');
+    Route::delete('/products/{product}', [PlantProductController::class, 'destroy'])->name('seller.products.destroy');
 });
 
 // =========================
-// 🛒 shopping cart Routes
+// 🛒 Shopping Cart Routes
 // =========================
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [ShoppingCartController::class, 'index'])->name('cart.index');
@@ -148,48 +136,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/clear', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
 });
 
-
-// =========================
-// 🔑 Authentication Routes
-// =========================
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-
-// =========================
-// 🏷️ Role Request Routes
-// =========================
-// Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
-
-// Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
-// Route::post('/role/request/cancel', [RoleRequestController::class, 'cancel'])->name('role.request.cancel');
-// Route::post('/role/request/modify', [RoleRequestController::class, 'modify'])->name('role.request.modify');
-Route::patch('/role/request/{roleRequest}', [RoleRequestController::class, 'update'])
-    ->name('role.request.update')
-    ->middleware(['auth', 'role:admin']);
-Route::get('/role-request', function () {
-    return view('role_request');
-})->middleware('auth')->name('role.request.view');
-
-Route::middleware(['auth'])->group(function () {
-    Route::post('/role/request', [RoleRequestController::class, 'store'])->name('role.request');
-    Route::post('/role/request/cancel', [RoleRequestController::class, 'cancel'])->name('role.request.cancel');
-    Route::post('/role/request/modify', [RoleRequestController::class, 'modify'])->name('role.request.modify');
-    // Route::post('/role/request/remove', [RoleRequestController::class, 'requestRoleRemoval'])->name('role.request.remove');
-    Route::post('/role/request/change', [RoleRequestController::class, 'requestRoleChange'])->name('role.request.change');
-    Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])->name('role.remove');
-});
-
 // =========================
 // 📝 Blog Posts Routes
 // =========================
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 
 // =========================
-// 🛠️ Miscellaneous Routes
-// =========================
-Route::get('/role-request-status', [UserController::class, 'showRequestStatus'])->middleware('auth');
-
 // ✅ Include Laravel authentication routes
+// =========================
 require __DIR__ . '/auth.php';
