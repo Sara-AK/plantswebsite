@@ -47,6 +47,8 @@
             <tr>
                 <th>User</th>
                 <th>Requested Role</th>
+                <th>Request Note</th>
+                <th>CV File</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -55,6 +57,28 @@
                 <tr>
                     <td>{{ $request->user->name }}</td>
                     <td>{{ ucfirst($request->requested_role) }}</td>
+
+                    {{-- Display Request Note --}}
+                    <td>
+                        @if(!empty($request->request_note))
+                            {{ $request->request_note }}
+                        @else
+                            <span class="text-muted">No note provided</span>
+                        @endif
+                    </td>
+
+                    {{-- Display CV File --}}
+                    <td>
+                        @if(!empty($request->cv_file))
+                            <a href="{{ asset('storage/' . $request->cv_file) }}" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-file"></i> View CV
+                            </a>
+                        @else
+                            <span class="text-muted">No CV uploaded</span>
+                        @endif
+                    </td>
+
+                    {{-- Actions --}}
                     <td>
                         <form method="POST" action="{{ route('admin.role.request.update', $request->id) }}" class="d-inline">
                             @csrf
@@ -90,7 +114,10 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ ucfirst($user->role) }}</td>
+
+                    {{-- Actions --}}
                     <td>
+                        {{-- Assign Admin Button (Only for non-admins) --}}
                         @if($user->role !== 'admin')
                             <form method="POST" action="{{ route('admin.user.assignAdmin', $user->id) }}" class="d-inline">
                                 @csrf
@@ -98,6 +125,40 @@
                             </form>
                         @endif
 
+                        {{-- Change Role Button (Only for non-admins) --}}
+                        @if($user->role !== 'admin')
+                            <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changeRoleModal{{ $user->id }}">
+                                <i class="fa-solid fa-exchange-alt"></i> Change Role
+                            </a>
+
+                            {{-- Change Role Modal --}}
+                            <div class="modal fade" id="changeRoleModal{{ $user->id }}" tabindex="-1" aria-labelledby="changeRoleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="changeRoleModalLabel">Change Role for {{ $user->name }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="{{ route('admin.user.changeRole', $user->id) }}">
+                                                @csrf
+                                                <label for="new_role">Select New Role:</label>
+                                                <select name="new_role" class="form-select">
+                                                    <option value="user">User</option>
+                                                    <option value="gardener">Gardener</option>
+                                                    <option value="seller">Seller</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-success mt-2">
+                                                    <i class="fa-solid fa-check"></i> Update Role
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        {{-- Delete Button (Only for non-admins) --}}
                         @if($user->role !== 'admin')
                             <form method="POST" action="{{ route('admin.user.delete', $user->id) }}" class="d-inline">
                                 @csrf

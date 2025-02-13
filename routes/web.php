@@ -88,7 +88,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
     Route::post('/admin/user/assign-admin/{user}', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
     Route::post('/admin/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
+// duplicated routes - remove unfixed
+    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
+    // Register user
+    Route::post('/admin/user/register', [AdminController::class, 'registerUser'])->name('admin.user.register');
+    // Assign admin role
+    Route::post('/admin/user/{user}/assign-admin', [AdminController::class, 'assignAdmin'])->name('admin.user.assignAdmin');
+    // Change user role
+    Route::post('/admin/user/{user}/change-role', [AdminController::class, 'changeUserRole'])->name('admin.user.changeRole');
+    // Delete user
+    Route::post('/admin/user/{user}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
 });
+
 
 // =========================
 // 👤 User Routes
@@ -169,7 +180,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/role/request/change', [RoleRequestController::class, 'requestRoleChange'])->name('role.request.change');
     Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])->name('role.remove');
 });
-
 
 // =========================
 // 📝 Blog Posts Routes
