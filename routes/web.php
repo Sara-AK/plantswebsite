@@ -59,6 +59,17 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'destroy' => 'admin.plants.destroy',
     ]);
 
+    Route::resource('categories', CategoryController::class)->names([
+        'index' => 'admin.categories.index',
+        'create' => 'admin.categories.create',
+        'store' => 'admin.categories.store',
+        'edit' => 'admin.categories.edit',
+        'update' => 'admin.categories.update',
+        'destroy' => 'admin.categories.destroy',
+    ])->except(['show']); // Exclude 'show' to avoid conflicts with public categories
+
+
+
     Route::resource('products', PlantProductController::class)->names([
         'index' => 'admin.products.index',
         'create' => 'admin.products.create',

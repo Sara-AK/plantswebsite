@@ -7,26 +7,47 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of all categories.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
-        $categories = PlantCategory::all(); // Fetch all categories
-        return view('categories.index', compact('categories'));
+        $categories = PlantCategory::all();
+        return view('admin.plants.categories', compact('categories'));
     }
 
-    /**
-     * Display the specified category with its related plants.
-     *
-     * @param  int  $id
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
+    public function store(Request $request)
     {
-        $category = PlantCategory::with('plants')->findOrFail($id); // Find category and load related plants
-        return view('categories.show', compact('category'));
+        $request->validate([
+            'name' => 'required|string|unique:plantcategories,name',
+            'description' => 'nullable|string',
+        ]);
+
+
+        PlantCategory::create($request->all());
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category added successfully.');
+    }
+
+    public function edit(PlantCategory $category)
+    {
+        return view('admin.plants.edit_category', compact('category'));
+    }
+
+    public function update(Request $request, PlantCategory $category)
+    {
+        $request->validate([
+            'name' => 'required|string|unique:plantcategories,name,' . $category->id,
+            'description' => 'nullable|string',
+        ]);
+
+
+        $category->update($request->all());
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+    }
+
+    public function destroy(PlantCategory $category)
+    {
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 }
