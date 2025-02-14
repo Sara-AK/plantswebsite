@@ -39,7 +39,8 @@
                                 <li>
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#roleRequestModal">
                                         <i class="fa-solid {{ $roleRequest ? 'fa-clock' : 'fa-user-plus' }}"></i>
-                                        {{ $roleRequest ? 'Manage Role Request' : 'Request Role' }}
+                                        {{-- Kept the existing condition --}}
+                                        {{ $roleRequest == 'user' ? 'Request Role' : 'Manage Role Request' }}
                                     </a>
                                 </li>
                             @endif
@@ -110,6 +111,33 @@
                         <form method="POST" action="{{ route('role.request.cancel') }}">
                             @csrf
                             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel Request</button>
+                        </form>
+
+                    {{-- If the user's request was rejected, show a rejection message --}}
+                    @elseif($roleRequest && $roleRequest->status === 'rejected')
+                        <div class="alert alert-warning">
+                            Your previous request to become a <strong>{{ ucfirst($roleRequest->requested_role) }}</strong> was rejected.
+                            You may submit a new request.
+                        </div>
+
+                        {{-- Allow user to submit a new request --}}
+                        <form method="POST" action="{{ route('role.request') }}" enctype="multipart/form-data">
+                            @csrf
+                            <label for="requested_role">Select Role:</label>
+                            <select name="requested_role" class="form-select">
+                                <option value="gardener">Gardener</option>
+                                <option value="seller">Seller</option>
+                            </select>
+
+                            <label for="request_note" class="mt-2">Additional Information (Optional):</label>
+                            <textarea name="request_note" class="form-control" rows="3" placeholder="Explain why you are applying for this role..."></textarea>
+
+                            <label for="cv_file" class="mt-2">Upload CV (Optional):</label>
+                            <input type="file" name="cv_file" class="form-control" accept=".pdf,.doc,.docx">
+
+                            <button type="submit" class="btn btn-success mt-2">
+                                <i class="fa-solid fa-user-plus"></i> Request Role
+                            </button>
                         </form>
 
                     {{-- If the user already has a role (not a regular user) --}}

@@ -144,4 +144,24 @@ Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 // =========================
 // ✅ Include Laravel authentication routes
 // =========================
+
+Route::middleware('auth')->group(function () {
+
+    // **1️⃣ User Requests a Role**
+    Route::post('/role/request', [RoleRequestController::class, 'store'])
+        ->name('role.request');
+
+    // **2️⃣ User Checks Role Request Status**
+    Route::get('/role-request-status', [UserController::class, 'showRequestStatus'])
+        ->name('role.request.status');
+
+    Route::post('/role-request/cancel', [RoleRequestController::class, 'cancel'])
+        ->name('role.request.cancel');
+
+    Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])
+        ->name('role.remove');
+
+});
+
 require __DIR__ . '/auth.php';
+
