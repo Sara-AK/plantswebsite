@@ -148,36 +148,4 @@
         </div>
     </section>
 
-    <style>
-        .bg-dark-green {
-            background-color: #4baf47 !important;
-            color: white !important;
-        }
-        .table-dark-green {
-            border: 0.5px solid #04240c;
-        }
-        .btn-success {
-            background-color: #2d6a32 !important;
-            border-color: #4baf47 !important;
-        }
-        .btn-success:hover {
-            background-color: #4baf47 !important;
-        }
-        .rounded {
-            border-radius: 10px !important;
-        }
-        .rounded-pill {
-            border-radius: 50px !important;
-        }
-        .img-thumbnail {
-            border-radius: 50% !important;
-            object-fit: cover;
-        }
-    </style>
-
-    <!-- Ensure jQuery & Bootstrap JS are included -->
-    <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
-
 @endsection

@@ -59,6 +59,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'update' => 'admin.plants.update',
         'destroy' => 'admin.plants.destroy',
     ]);
+    Route::get('/regions/{region}/edit', [RegionController::class, 'edit'])->name('regions.edit');
+    Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
+
+    // Categories
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
 
     Route::resource('categories', CategoryController::class)->names([
         'index' => 'admin.categories.index',

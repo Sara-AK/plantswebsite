@@ -105,5 +105,42 @@ class PlantController extends Controller
         return redirect()->route('admin.plants.index')->with('success', 'Plant deleted successfully.');
     }
 
+    public function edit($id)
+    {
+        $plant = Plant::with(['categories', 'regions'])->findOrFail($id);
+        $allCategories = PlantCategory::all();
+        $allRegions = Region::all();
+
+        return view('admin.plants.edit', compact('plant', 'allCategories', 'allRegions'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'caredifficulty' => 'required|string|max:255',
+            'description' => 'required|string',
+            'caretips' => 'nullable|string',
+            'pictures' => 'required|string',
+            'categories' => 'array|required',
+            'regions' => 'array|required',
+        ]);
+
+        $plant->update([
+            'name' => $request->name,
+            'caredifficulty' => $request->caredifficulty,
+            'description' => $request->description,
+            'caretips' => $request->caretips,
+            'pictures' => $request->pictures,
+        ]);
+
+        $plant->categories()->sync($request->categories);
+        $plant->regions()->sync($request->regions);
+
+        return redirect()->route('admin.plants.index')->with('success', 'Plant updated successfully.');
+    }
+
 
 }
