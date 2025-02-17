@@ -9,11 +9,36 @@ use Illuminate\Http\Request;
 class PlantProductController extends Controller
 {
     // Display a paginated list of plant products for public view
-    public function publicIndex()
+    public function publicIndex(Request $request)
     {
-        $products = PlantProduct::paginate(6); // Public view with pagination
-        return view('public.products.index', compact('products'));
+        $query = PlantProduct::query();
+
+        // 🔍 Search by product name
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // 🔹 Filter by Category (if selected)
+        if ($request->filled('category')) {
+            $query->whereHas('productCategories', function ($q) use ($request) {
+                $q->where('productcategory.id', $request->category); 
+            });
+        }
+
+        // 🔽 Sorting (Name A-Z or Z-A)
+        if ($request->filled('sort')) {
+            $query->orderBy('name', $request->sort);
+        }
+
+        // ✅ Paginate (6 per page)
+        $products = $query->paginate(6);
+
+        // Fetch all categories for the filter dropdown
+        $categories = \App\Models\ProductCategory::all();
+
+        return view('public.products.index', compact('products', 'categories'));
     }
+
 
     // Display details of a specific product, including its associated plant
     public function publicShow(PlantProduct $product)

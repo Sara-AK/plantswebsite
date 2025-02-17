@@ -20,6 +20,11 @@ class PlantProduct extends Model
     {
         return $this->belongsToMany(ProductCategory::class, 'product_category');
     }
+    public function productCategories()
+    {
+        return $this->belongsToMany(ProductCategory::class, 'product_productcategory', 'product_id', 'category_id');
+    }
+
 
 }
 
