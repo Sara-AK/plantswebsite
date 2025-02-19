@@ -76,17 +76,26 @@
                                 </a>
                             </div>
 
-                            <!-- 🛒 Add to Cart Button (Only for Authenticated Users) -->
-                            @auth
-                                <div class="text-center mt-3">
-                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">
-                                            🛒 Add to Cart
-                                        </button>
-                                    </form>
-                                </div>
-                            @endauth
+                            <div class="text-center mt-3">
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">
+                                        🛒 Add to Cart
+                                    </button>
+                                </form>
+                            </div>
+
+                            @if(!auth()->check())
+                                <script>
+                                    document.querySelectorAll('form[action*="cart.add"]').forEach(form => {
+                                        form.addEventListener('submit', function(e) {
+                                            e.preventDefault();
+                                            window.location.href = "{{ route('login') }}";
+                                        });
+                                    });
+                                </script>
+                            @endif
+
 
                         </div>
                     </div>

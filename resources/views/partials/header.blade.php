@@ -67,11 +67,9 @@
                     {{-- Shopping Cart (Only visible on product pages) --}}
                     <li>
                         @if(Auth::check() && request()->is('products'))
-                            <div class="shopping-cart">
-                                <a href="{{ route('cart.index') }}" class="btn btn-primary">
-                                    🛒 Cart ({{ session('cart') ? count(session('cart')) : 0 }})
-                                </a>
-                            </div>
+                            <a href="{{ route('cart.index') }}" class="nav-link text-white">
+                                Cart
+                            </a>
                         @endif
                     </li>
                     @else
