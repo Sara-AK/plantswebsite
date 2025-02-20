@@ -9,11 +9,35 @@ use Illuminate\Http\Request;
 class PlantController extends Controller
 {
     // Public-facing plants list
-    public function publicIndex()
+    public function publicIndex(Request $request)
     {
-        $plants = Plant::paginate(6); // Public view with pagination
-        return view('public.plants.index', compact('plants'));
+        $query = Plant::query();
+
+        // Search functionality
+        if ($request->has('search') && !empty($request->search)) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter by category
+        if ($request->has('category') && !empty($request->category)) {
+            $query->whereHas('categories', function ($q) use ($request) {
+                $q->where('plantcategories.id', $request->category); // ✅ Explicit table name
+            });
+        }
+
+        // Sort by name (A-Z or Z-A)
+        if ($request->has('sort') && in_array($request->sort, ['asc', 'desc'])) {
+            $query->orderBy('name', $request->sort);
+        }
+
+        $plants = $query->paginate(6);
+
+        // Fetch all categories for the filter dropdown
+        $categories = PlantCategory::all();
+
+        return view('public.plants.index', compact('plants', 'categories'));
     }
+
 
 
     public function index()
@@ -103,6 +127,43 @@ class PlantController extends Controller
 
         $plant->delete();
         return redirect()->route('admin.plants.index')->with('success', 'Plant deleted successfully.');
+    }
+
+    public function edit($id)
+    {
+        $plant = Plant::with(['categories', 'regions'])->findOrFail($id);
+        $allCategories = PlantCategory::all();
+        $allRegions = Region::all();
+
+        return view('admin.plants.edit', compact('plant', 'allCategories', 'allRegions'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $plant = Plant::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'caredifficulty' => 'required|string|max:255',
+            'description' => 'required|string',
+            'caretips' => 'nullable|string',
+            'pictures' => 'required|string',
+            'categories' => 'array|required',
+            'regions' => 'array|required',
+        ]);
+
+        $plant->update([
+            'name' => $request->name,
+            'caredifficulty' => $request->caredifficulty,
+            'description' => $request->description,
+            'caretips' => $request->caretips,
+            'pictures' => $request->pictures,
+        ]);
+
+        $plant->categories()->sync($request->categories);
+        $plant->regions()->sync($request->regions);
+
+        return redirect()->route('admin.plants.index')->with('success', 'Plant updated successfully.');
     }
 
 

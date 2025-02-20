@@ -13,16 +13,46 @@
     <section class="donation-inner pb-130">
         <div class="container">
 
-            <!-- ✅ Show "Add Product" button only for Sellers & Admins -->
-            @auth
-                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'seller')
-                    <div class="mb-4 text-end">
-                        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
-                            ➕ Add New Product
-                        </a>
+
+            <!-- 🔍 Search and Filter Form -->
+            <form method="GET" action="{{ route('public.products.index') }}" class="mb-4">
+                <div class="row align-items-end mt-4 pb-3 pt-3 border-bottom">
+                    <!-- Search Bar -->
+                    <div class="col-md-4">
+                        <label for="search" class="form-label fw-bold"></label>
+                        <input type="text" id="search" name="search" value="{{ request('search') }}" class="form-control"
+                            placeholder="Search products...">
                     </div>
-                @endif
-            @endauth
+
+                    <!-- Category Dropdown -->
+                    <div class="col-md-3">
+                        <label for="category" class="form-label fw-bold"></label>
+                        <select id="category" name="category" class="form-control">
+                            <option value="">All Categories</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Sorting -->
+                    <div class="col-md-3">
+                        <label for="sort" class="form-label fw-bold"></label>
+                        <select id="sort" name="sort" class="form-control">
+                            <option value="">Sort By</option>
+                            <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                            <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Name (Z-A)</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Apply</button>
+                    </div>
+                </div>
+            </form>
 
             <div class="row g-4">
                 @foreach ($products as $product)
@@ -46,17 +76,26 @@
                                 </a>
                             </div>
 
-                            <!-- 🛒 Add to Cart Button (Only for Authenticated Users) -->
-                            @auth
-                                <div class="text-center mt-3">
-                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">
-                                            🛒 Add to Cart
-                                        </button>
-                                    </form>
-                                </div>
-                            @endauth
+                            <div class="text-center mt-3">
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">
+                                        🛒 Add to Cart
+                                    </button>
+                                </form>
+                            </div>
+
+                            @if(!auth()->check())
+                                <script>
+                                    document.querySelectorAll('form[action*="cart.add"]').forEach(form => {
+                                        form.addEventListener('submit', function(e) {
+                                            e.preventDefault();
+                                            window.location.href = "{{ route('login') }}";
+                                        });
+                                    });
+                                </script>
+                            @endif
+
 
                         </div>
                     </div>

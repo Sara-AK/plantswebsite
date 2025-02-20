@@ -24,21 +24,28 @@ class RegionController extends Controller
         return redirect()->route('admin.regions.index')->with('success', 'Region added!');
     }
 
-    public function edit(Region $region)
-    {
-        return view('regions.edit', compact('region'));
-    }
-
-    public function update(Request $request, Region $region)
-    {
-        $request->validate(['name' => 'required|unique:regions,name,' . $region->id]);
-        $region->update($request->all());
-        return redirect()->route('admin.regions.index')->with('success', 'Region updated!');
-    }
-
     public function destroy(Region $region)
     {
         $region->delete();
         return redirect()->route('admin.regions.index')->with('success', 'Region deleted!');
     }
+
+    public function edit(Region $region)
+    {
+        return view('admin.regions.edit', compact('region'));
+    }
+
+    public function update(Request $request, Region $region)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $region->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.regions.index')->with('success', 'Region updated successfully!');
+    }
+
 }

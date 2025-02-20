@@ -12,10 +12,12 @@ use App\Http\Controllers\GardenerController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\RegionController;
+
 
 // =========================
 // 🚀 Public Routes
@@ -30,6 +32,10 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('publi
 
 Route::get('/products', [PlantProductController::class, 'publicIndex'])->name('public.products.index');
 Route::get('/products/{product}', [PlantProductController::class, 'publicShow'])->name('public.products.show');
+
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+
 
 // =========================
 // 🔒 Authenticated & Verified Users
@@ -51,6 +57,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::delete('/user/{id}', [AdminController::class, 'destroy'])->name('admin.user.delete');
 
+    Route::resource('articles', ArticleController::class);
+
     Route::resource('plants', PlantController::class)->names([
         'index' => 'admin.plants.index',
         'create' => 'admin.plants.create',
@@ -59,6 +67,22 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'update' => 'admin.plants.update',
         'destroy' => 'admin.plants.destroy',
     ]);
+    Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+        Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+        Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store'); // 👈 ADD THIS
+        Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+        Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
+        Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+    });
+
+    Route::get('/regions/{region}/edit', [RegionController::class, 'edit'])->name('regions.edit');
+    Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
+
+    // Categories
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
 
     Route::resource('categories', CategoryController::class)->names([
         'index' => 'admin.categories.index',
@@ -77,6 +101,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         'update' => 'admin.products.update',
         'destroy' => 'admin.products.destroy',
     ]);
+
 
     Route::resource('regions', RegionController::class)->names([
         'index' => 'admin.regions.index',

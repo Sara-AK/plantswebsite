@@ -220,87 +220,45 @@
     <!-- product area end here -->
 
     <!-- Articles area start here -->
-    <section class="work work-five pt-130 pb-65">
-        <div class="container">
-            <div class="pb-65 bor-bottom mb-65">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="section-header m-0">
-                            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
-                                    src="assets/images/icon/leaf.svg" alt="image"> EXPLORE </h5>
-                            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Articles</h2>
-                        </div>
+    <!-- Articles area start here -->
+<section class="work work-five pt-130 pb-65">
+    <div class="container">
+        <div class="pb-65 bor-bottom mb-65">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="section-header m-0">
+                        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                            <img src="{{ asset('assets/images/icon/leaf.svg') }}" alt="image"> EXPLORE
+                        </h5>
+                        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Articles</h2>
                     </div>
                 </div>
             </div>
-            <div class="row g-4">
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="1.2s"
-                    data-wow-delay=".2s">
+        </div>
+        <div class="row g-4">
+            @foreach ($articles as $index => $article)
+                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="{{ 1.2 + ($index * 0.2) }}s"
+                    data-wow-delay=".{{ 2 + ($index * 2) }}s">
                     <div class="work-five__item">
                         <div class="work__item-icon mb-30">
                             <div class="work-five__icon">
                                 <i class="fa-light fa-lightbulb-on"></i>
                             </div>
-                            <span>01</span>
+                            <span>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         </div>
-                        <h3><a href="service-single.html">Energy saving</a></h3>
-                        <p>We maintain a busy network of forestry and social development staff along with local
-                            facilitators in the areas we work.</p>
-                        <a class="work__item-arrow" href="service-single.html"><i
-                                class="fa-solid fa-arrow-right"></i></a>
+                        <h3><a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a></h3>
+                        <p>{{ Str::limit($article->content, 100, '...') }}</p>
+                        <a class="work__item-arrow" href="{{ route('articles.show', $article->id) }}">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="1.4s"
-                    data-wow-delay=".4s">
-                    <div class="work-five__item">
-                        <div class="work__item-icon mb-30">
-                            <div class="work-five__icon">
-                                <i class="fa-light fa-seedling"></i>
-                            </div>
-                            <span>02</span>
-                        </div>
-                        <h3><a href="service-single.html">Forest protection</a></h3>
-                        <p>We maintain a busy network of forestry and social development staff along with local
-                            facilitators in the areas we work.</p>
-                        <a class="work__item-arrow" href="service-single.html"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="1.6s"
-                    data-wow-delay=".6s">
-                    <div class="work-five__item">
-                        <div class="work__item-icon mb-30">
-                            <div class="work-five__icon">
-                                <i class="fa-light fa-recycle"></i>
-                            </div>
-                            <span>03</span>
-                        </div>
-                        <h3><a href="service-single.html">Cleaning & Recycling</a></h3>
-                        <p>We maintain a busy network of forestry and social development staff along with local
-                            facilitators in the areas we work.</p>
-                        <a class="work__item-arrow" href="service-single.html"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="1.8s"
-                    data-wow-delay=".8s">
-                    <div class="work-five__item">
-                        <div class="work__item-icon mb-30">
-                            <div class="work-five__icon">
-                                <i class="fa-light fa-raindrops"></i>
-                            </div>
-                            <span>04</span>
-                        </div>
-                        <h3><a href="service-single.html">water saving</a></h3>
-                        <p>We maintain a busy network of forestry and social development staff along with local
-                            facilitators in the areas we work.</p>
-                        <a class="work__item-arrow" href="service-single.html"><i
-                                class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-    </section>
+    </div>
+</section>
+<!-- Articles area end here -->
+
     <!-- Articles area end here -->
 
     <!-- achievement area removed here -->

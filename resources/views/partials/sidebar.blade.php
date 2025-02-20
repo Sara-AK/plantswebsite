@@ -13,6 +13,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.products.index') }}">🛠 Manage Products</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.plants.index') }}">🛠 Manage Plants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.regions.index') }}">🛠 Manage Regions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.categories.index') }}">🛠 Manage Plant Categories</a>
+            </li>
         @endif
         @if(Auth::user()->role === 'admin')
             <li><a class="dropdown-item" href="{{ route('admin.users') }}"><i class="fa-solid fa-users"></i> Manage Users</a></li>

@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = PlantCategory::all();
-        return view('admin.plants.categories', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -26,28 +26,31 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category added successfully.');
     }
 
-    public function edit(PlantCategory $category)
-    {
-        return view('admin.plants.edit_category', compact('category'));
-    }
-
-    public function update(Request $request, PlantCategory $category)
-    {
-        $request->validate([
-            'name' => 'required|string|unique:plantcategories,name,' . $category->id,
-            'description' => 'nullable|string',
-        ]);
-
-
-        $category->update($request->all());
-
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
-    }
-
     public function destroy(PlantCategory $category)
     {
         $category->delete();
 
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
+
+    public function edit(PlantCategory $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, PlantCategory $category)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully!');
+    }
+
 }
