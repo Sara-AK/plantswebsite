@@ -166,9 +166,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-
-
 // =========================
 // 🛒 Seller Routes
 // =========================
