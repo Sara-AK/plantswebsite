@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlantCategory; // Replace with your actual model name
+use App\Models\PlantCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
