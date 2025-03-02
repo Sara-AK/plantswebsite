@@ -7,6 +7,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "arielmejiadev/larapex-charts": "*",
+        "chartisan/php": "*",
+        "consoletvs/charts": "^6.8",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9"

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\PlantProduct;
 use App\Models\CartItem;
 
+use App\Models\ProductCategory;
+
 class ShoppingCartController extends Controller
 {
     public function index()
@@ -14,7 +16,9 @@ class ShoppingCartController extends Controller
             ? CartItem::where('user_id', auth()->id())->with('product')->get()
             : session()->get('cart', []);
 
-        return view('cart.index', compact('cartItems'));
+        $categories = ProductCategory::all(); // Fetch all categories
+
+        return view('cart.index', compact('cartItems', 'categories'));
     }
 
 
@@ -23,7 +27,7 @@ class ShoppingCartController extends Controller
         $product = PlantProduct::findOrFail($id);
 
         if (auth()->check()) {
-            // Authenticated user: store in MySQL
+            // ✅ Authenticated user: store in MySQL
             $cartItem = CartItem::firstOrCreate(
                 ['user_id' => auth()->id(), 'plant_product_id' => $id],
                 ['quantity' => 1]
@@ -32,24 +36,29 @@ class ShoppingCartController extends Controller
             if (!$cartItem->wasRecentlyCreated) {
                 $cartItem->increment('quantity');
             }
+
+            $message = "{$product->name} was added to your cart successfully!";
         } else {
-            // Guest user: store in session
+            // ✅ Guest user: store in session (Ensure cart array exists)
             $cart = session()->get('cart', []);
 
             if (isset($cart[$id])) {
                 $cart[$id]['quantity']++;
             } else {
                 $cart[$id] = [
+                    'id' => $product->id,
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => 1,
+                    'image' => $product->picture_url, // ✅ Ensures image is stored
                 ];
             }
 
             session()->put('cart', $cart);
+            $message = "{$product->name} was added to your cart successfully!";
         }
 
-        return redirect()->route('public.products.index')->with('success', 'Product added to cart!');
+        return redirect()->back()->with('success', $message);
     }
 
 
