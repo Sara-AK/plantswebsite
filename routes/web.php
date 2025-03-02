@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PlantProductController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GardenerController;
 use App\Http\Controllers\SellerController;
@@ -158,6 +159,8 @@ Route::middleware(['auth', 'role:seller'])->prefix('seller')->group(function () 
     Route::get('/products/{product}/edit', [PlantProductController::class, 'edit'])->name('seller.products.edit');
     Route::patch('/products/{product}', [PlantProductController::class, 'update'])->name('seller.products.update');
     Route::delete('/products/{product}', [PlantProductController::class, 'destroy'])->name('seller.products.destroy');
+
+    Route::get('/dashboard', [SellerDashboardController::class, 'index'])->name('seller.dashboard');
 });
 
 // =========================
