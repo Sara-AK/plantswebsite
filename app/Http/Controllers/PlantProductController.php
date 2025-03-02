@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PlantProduct;
 use App\Models\Plant;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class PlantProductController extends Controller
@@ -21,7 +22,7 @@ class PlantProductController extends Controller
         // 🔹 Filter by Category (if selected)
         if ($request->filled('category')) {
             $query->whereHas('productCategories', function ($q) use ($request) {
-                $q->where('productcategory.id', $request->category); 
+                $q->where('product_categories.id', $request->category);
             });
         }
 
@@ -34,7 +35,7 @@ class PlantProductController extends Controller
         $products = $query->paginate(6);
 
         // Fetch all categories for the filter dropdown
-        $categories = \App\Models\ProductCategory::all();
+        $categories = ProductCategory::all();
 
         return view('public.products.index', compact('products', 'categories'));
     }
@@ -47,6 +48,7 @@ class PlantProductController extends Controller
         return view('public.products.show', compact('product'));
     }
 
+    // Display all plant products for admins
     public function index()
     {
         $plantProducts = PlantProduct::with('plant')->get(); // Get products with associated plants
@@ -55,28 +57,18 @@ class PlantProductController extends Controller
         return view('admin.products.index', compact('plantProducts', 'allPlants'));
     }
 
-
-
-
-    // Show the form for creating a new resource
+    // Show the form for creating a new product
     public function create()
     {
-        // Ensure only sellers and admins can access
-        // if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'seller') {
-        //     abort(403, 'Unauthorized action.');
-        // }
-
         $plants = Plant::all();
+        $categories = ProductCategory::all(); // Fetch all categories
 
-        return view('public.products.create', compact('plants'));
+        return view('public.products.create', compact('plants', 'categories'));
     }
 
+    // Store a newly created product
     public function store(Request $request)
     {
-        // if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'seller'])) {
-        //     abort(403, 'Unauthorized action.');
-        // }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -95,32 +87,26 @@ class PlantProductController extends Controller
 
         PlantProduct::create($validated);
 
-        return redirect()->route('admin.products')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
-
-    // Display the specified resource
+    // Display a single product
     public function show(PlantProduct $plantProduct)
     {
         return view('public.products.show', compact('plantProduct'));
     }
 
-    // Show the form for editing the specified resource
+    // Show the form for editing an existing product
     public function edit(PlantProduct $product)
     {
-        // Allow only admins and the product's seller to edit
-        // if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
-        //     abort(403, 'Unauthorized action.');
-        // }
+        $categories = ProductCategory::all();
 
-        return view('public.products', compact('product'));
+        return view('public.products.edit', compact('product', 'categories'));
     }
 
-
-    // Update the specified resource in storage
+    // Update a product
     public function update(Request $request, PlantProduct $product)
     {
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -136,33 +122,23 @@ class PlantProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
-
-    // Remove the specified resource from storage
+    // Remove a product from storage
     public function destroy(PlantProduct $product)
     {
-        // Allow only admins and the product's seller to delete
-        // if (auth()->user()->role !== 'admin' && auth()->id() !== $product->seller_id) {
-        //     abort(403, 'Unauthorized action.');
-        // }
-
         $product->delete();
-        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 
-
+    // Manage products for admins and sellers
     public function manageProducts()
     {
-        // Admins see all products, Sellers see only their own products
         $products = auth()->user()->role === 'admin'
             ? PlantProduct::paginate(10)
             : PlantProduct::where('seller_id', auth()->id())->paginate(10);
 
-        return view('public.products', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
-
-
-
 }

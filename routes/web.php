@@ -27,6 +27,10 @@ Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke
     ->name('verification.notice');
 
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\OrderController;
+
+
 
 
 // =========================
@@ -129,6 +133,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/user/{user}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.delete');
 
     Route::post('/role-requests/{roleRequest}/update', [AdminController::class, 'updateRoleRequest'])->name('admin.role.request.update');
+
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+
 });
 
 // =========================
@@ -181,6 +190,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add/{id}', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove/{id}', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
     Route::post('/cart/clear', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
+
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+    Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('orders.place');
 });
 
 // =========================
@@ -211,6 +223,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/{gardener}', [ChatController::class, 'store'])->name('chat.store');
     Route::get('/my-requests', [GardenerRequestController::class, 'userRequests'])->name('user.requests');
 
+});
+
+// =========================
+// ✅ Order routes
+// =========================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+    Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('orders.place');
+    Route::get('/order-success', [OrderController::class, 'orderSuccess'])->name('orders.success');
 });
 
 require __DIR__ . '/auth.php';
