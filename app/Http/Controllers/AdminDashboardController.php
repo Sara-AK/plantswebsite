@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\PlantProduct;
 use App\Models\Order;
 use App\Models\Plant;
-use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use App\Charts\UserGrowthChart;
+use App\Charts\OrdersChart;
+use App\Charts\RevenueChart;
 
 class AdminDashboardController extends Controller
 {
@@ -20,14 +22,14 @@ class AdminDashboardController extends Controller
         $totalOrders = Order::count();
         $totalRevenue = Order::sum('total_price');
 
-        $userGrowthChart = new Chart;
-        $userGrowthChart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
-            ->dataset('New Users', 'line', [10, 20, 30, 40, 50, 60])
-            ->options(['backgroundColor' => 'rgba(54, 162, 235, 0.2)']);
+        // Initialize Charts
+        $userGrowthChart = new UserGrowthChart();
+        $ordersChart = new OrdersChart();
+        $revenueChart = new RevenueChart();
 
         return view('admin.dashboard', compact(
             'totalUsers', 'pendingRequests', 'totalProducts', 'totalPlants',
-            'totalOrders', 'totalRevenue', 'userGrowthChart'
+            'totalOrders', 'totalRevenue', 'userGrowthChart', 'ordersChart', 'revenueChart'
         ));
     }
 }

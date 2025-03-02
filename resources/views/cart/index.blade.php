@@ -6,9 +6,6 @@
 <div class="container">
     <h2>🛒 Your Shopping Cart</h2>
 
-<<<<<<< HEAD
-    @if(auth()->check() ? $cartItems->isNotEmpty() : (session('cart') && count(session('cart')) > 0))
-=======
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             {{ session('success') }}
@@ -18,7 +15,6 @@
 
     @if(auth()->check() && $cartItems->count() > 0)
         <!-- ✅ Authenticated User Cart -->
->>>>>>> b2cd991 (order-dashboard1)
         <table class="table">
             <thead>
                 <tr>
@@ -67,44 +63,24 @@
                 </tr>
             </thead>
             <tbody>
-                @if(auth()->check())
-                    @foreach($cartItems as $item)
-                        <tr>
-                            <td>{{ $item->product->name }}</td>
-                            <td>${{ number_format($item->product->price, 2) }}</td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>
-                                <form action="{{ route('cart.remove', $item->product->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
-                    @foreach(session('cart') as $id => $product)
-                        <tr>
-                            <td>{{ $product['name'] }}</td>
-                            <td>${{ $product['price'] }}</td>
-                            <td>{{ $product['quantity'] }}</td>
-                            <td>
-                                <form action="{{ route('cart.remove', $id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
+                @foreach(session('cart') as $id => $product)
+                    <tr>
+                        <td>{{ $product['name'] }}</td>
+                        <td>${{ $product['price'] }}</td>
+                        <td>{{ $product['quantity'] }}</td>
+                        <td>
+                            <form action="{{ route('cart.remove', $id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
         <div class="text-end">
-            @if(session('cart') && count(session('cart')) > 0)
-                <div class="text-end">
-                    <a href="{{ route('orders.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
-                </div>
-            @endif
+            <a href="{{ route('orders.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
         </div>
 
     @else

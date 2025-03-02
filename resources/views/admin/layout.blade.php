@@ -9,7 +9,7 @@
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand mx-3" href="#">PlantCare Hub Admin</a>
+        <a class="navbar-brand mx-3" href="#">Green Haven</a>
     </nav>
 
     <div class="container mt-4">

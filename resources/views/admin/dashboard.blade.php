@@ -32,5 +32,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Charts Section -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h5>User Growth (Last 6 Months)</h5>
+            <div>{!! $userGrowthChart->container() !!}</div>
+        </div>
+
+        <div class="col-md-6">
+            <h5>Orders Per Month</h5>
+            <div>{!! $ordersChart->container() !!}</div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h5>Revenue Per Month</h5>
+            <div>{!! $revenueChart->container() !!}</div>
+        </div>
+    </div>
 </div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{!! $userGrowthChart->script() !!}
+{!! $ordersChart->script() !!}
+{!! $revenueChart->script() !!}
+
 @endsection
