@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Message;
 
 
 class User extends Authenticatable
@@ -63,6 +64,34 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
+
+    public function gardenerRequests()
+    {
+        return $this->hasMany(GardenerRequest::class, 'user_id');
+    }
+
+    public function isRequestedBy(User $user)
+    {
+        return GardenerRequest::where('user_id', $user->id)
+            ->where('gardener_id', $this->id)
+            ->exists();
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function receivedRequests()
+    {
+        return $this->hasMany(GardenerRequest::class, 'gardener_id');
+    }
+
 
 
 }

@@ -17,9 +17,13 @@
                 {{-- Main Navigation --}}
                 <ul class="main-menu">
                     <li><a class="text-white" href="/">Home</a></li>
-                    <li><a class="text-white" href="{{ url('contact') }}">Contact Us</a></li>
-
-                    @auth
+                {{-- Gardener buttons --}}
+                @auth
+                @if(Auth::user()->role === 'gardener')
+                <li><a class="text-white" href="{{ route('gardeners.index') }}">My Requests</a></li>
+                @else
+                    <li><a class="text-white" href="{{ route('gardeners.index') }}">Contact a Gardener</a></li>
+                @endif
                     @php
                         // Fetch the latest role request of the user if not admin
                         $roleRequest = Auth::user()->role !== 'admin'
@@ -79,6 +83,8 @@
                         <a href="{{ route('register') }}"><span>Sign Up</span> <i class="fa-solid fa-arrow-right"></i></a>
                     </li>
                     @endauth
+
+
                 </ul>
             </div>
         </div>

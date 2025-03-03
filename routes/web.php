@@ -14,10 +14,20 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\GardenerRequestController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+
+Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
+    ->middleware('auth')
+    ->name('verification.notice');
+
+
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\OrderController;
 
@@ -142,10 +152,19 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
 // =========================
 // 🌱 Gardener Routes
 // =========================
-Route::middleware(['auth', 'role:gardener'])->prefix('gardener')->group(function () {
-    Route::get('/dashboard', [GardenerController::class, 'index'])->name('gardener.dashboard');
-    Route::get('/inquiries', [GardenerController::class, 'viewInquiries'])->name('gardener.inquiries');
+Route::middleware(['auth'])->group(function () {
+    // Show gardeners list for users & requests for gardeners
+    Route::get('/gardeners', [GardenerController::class, 'index'])->name('gardeners.index');
+
+    // Gardener Requests
+    Route::get('/gardeners/requests', [GardenerRequestController::class, 'index'])->name('gardeners.requests');
+    Route::post('/gardeners/{gardener}/request', [GardenerRequestController::class, 'store'])->name('request.gardener');
+
+    // Accept a request (Only gardeners should be able to do this)
+    Route::post('/requests/{id}/accept', [GardenerRequestController::class, 'acceptRequest'])
+        ->name('requests.accept');
 });
+
 
 // =========================
 // 🛒 Seller Routes
@@ -200,6 +219,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/role/remove', [RoleRequestController::class, 'removeRole'])
         ->name('role.remove');
+    Route::get('/chat/{gardener}', [ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/{gardener}', [ChatController::class, 'store'])->name('chat.store');
+    Route::get('/my-requests', [GardenerRequestController::class, 'userRequests'])->name('user.requests');
 
 });
 
