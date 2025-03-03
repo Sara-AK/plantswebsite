@@ -10,10 +10,10 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="1s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="1.8s">
+                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
                                 <span>Discover with us</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -24,10 +24,10 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg2.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="1s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="1.8s">
+                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
                                 <span>Discover with us</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -38,10 +38,10 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg3.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="1s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="1.3s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="1.8s">
+                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
                                 <span>Discover with us</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -76,16 +76,16 @@
                 <div class="col-xl-6">
                     <div class="involve-two__item">
                         <div class="section-header mb-4">
-                            <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s"><img
+                            <h5 class="wow fadeInUp" data-wow-duration="0.6s" data-wow-delay=".2s"><img
                                     src="assets/images/icon/leaf.svg" alt="image"> ABOUT OUR WEBSITE</h5>
-                            <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Illuminating Paths to
+                            <h2 class="wow fadeInUp" data-wow-duration="0.7s" data-wow-delay=".4s">Illuminating Paths to
                                 Wellness in Your Garden</h2>
-                            <p class="wow fadeInUp" data-wow-duration="1.6s" data-wow-delay=".6s">Our website is a hub for
+                            <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay=".6s">Our website is a hub for
                                 plant enthusiasts, connecting you with planting tips, expert advice, and plant sellers while
                                 fostering a social space for sharing your plant journey.</p>
                         </div>
                         <div class="accordion" id="accordionExample-two">
-                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">
+                            <div class="accordion-item wow fadeInDown" data-wow-duration="0.6s" data-wow-delay=".2s">
                                 <h2 class="accordion-header" id="heading1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item bor-top wow fadeInDown" data-wow-duration="1.4s"
+                            <div class="accordion-item bor-top wow fadeInDown" data-wow-duration="0.7s"
                                 data-wow-delay=".4s">
                                 <h2 class="accordion-header" id="heading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item wow fadeInDown" data-wow-duration="1.6s" data-wow-delay=".6s">
+                            <div class="accordion-item wow fadeInDown" data-wow-duration="0.8s" data-wow-delay=".6s">
                                 <h2 class="accordion-header" id="heading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
@@ -146,14 +146,14 @@
 <!-- Plants area sart here -->
 <section class="project-five pt-130">
     <div class="section-header text-center">
-        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+        <h5 class="wow fadeInUp" data-wow-duration="0.6s" data-wow-delay=".2s">
             <img src="assets/images/icon/leaf.svg" alt="image"> PLANTS
         </h5>
-        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Plants</h2>
+        <h2 class="wow fadeInUp" data-wow-duration="0.7s" data-wow-delay=".4s">Recent Plants</h2>
     </div>
     <div class="row g-0">
         @foreach ($plants->slice(0, 4) as $plant)
-            <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+            <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="0.6s" data-wow-delay=".2s">
                 <div class="project-five__item sub-bg">
                     <div class="project-five__content bg-white">
                         <h3>{{ $plant->name }}</h3>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">
+            <div class="col-xxl-3 col-lg-6 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay=".4s">
                 <div class="project-five__image">
                     <img src="{{ is_array($plant->pictures) ? $plant->pictures[0] : json_decode($plant->pictures, true)[0] ?? 'default-image.jpg' }}" alt="{{ $plant->name }}" style="max-height: 350px; width: auto;">
                 </div>
@@ -184,16 +184,16 @@
 
     <!-- product area start here -->
     <div class="section-header text-center">
-        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+        <h5 class="wow fadeInUp" data-wow-duration="0.6s" data-wow-delay=".2s">
             <img src="assets/images/icon/leaf.svg" alt="image"> PLANT PRODUCTS
         </h5>
-        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Recent Products</h2>
+        <h2 class="wow fadeInUp" data-wow-duration="0.7s" data-wow-delay=".4s">Recent Products</h2>
     </div>
     <section class="blog-two view-area pb-130 pt-65">
         <div class="container">
             <div class="row g-4">
                 @foreach ($plantProducts->slice(0, 6) as $product)
-    <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="1.2s" data-wow-delay=".2s">
+    <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="0.6s" data-wow-delay=".2s">
         <div class="donation__item blog-two__item bor view__item">
             <div class="blog-two__image mb-30">
                 <div class="image">
@@ -227,17 +227,17 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="section-header m-0">
-                        <h5 class="wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
+                        <h5 class="wow fadeInUp" data-wow-duration="0.6s" data-wow-delay=".2s">
                             <img src="{{ asset('assets/images/icon/leaf.svg') }}" alt="image"> EXPLORE
                         </h5>
-                        <h2 class="wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".4s">Articles</h2>
+                        <h2 class="wow fadeInUp" data-wow-duration="0.7s" data-wow-delay=".4s">Articles</h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row g-4">
             @foreach ($articles as $index => $article)
-                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="{{ 1.2 + ($index * 0.2) }}s"
+                <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 wow fadeInDown" data-wow-duration="0.5s"
                     data-wow-delay=".{{ 2 + ($index * 2) }}s">
                     <div class="work-five__item">
                         <div class="work__item-icon mb-30">
@@ -258,19 +258,5 @@
     </div>
 </section>
 <!-- Articles area end here -->
-
-    <!-- Articles area end here -->
-
-    <!-- achievement area removed here -->
-
-
-
-    <!--Team area removed here-->
-    <!--Donation area removed here-->
-    <!--Testimonial area removed here-->
-    <!--Blog area removed here-->
-
-
-
 
 @endsection

@@ -43,6 +43,7 @@
                             <li class="pb-1"><a href="{{ route('public.plants.index') }}"><i class="fa-solid fa-chevron-right pe-1 primary-color"></i> Plants</a></li>
                             <li class="pb-1"><a href="{{ route('public.products.index') }}"><i class="fa-solid fa-chevron-right pe-1 primary-color"></i> Products</a></li>
                             <li class="pb-1"><a href="{{ route('home') }}"><i class="fa-solid fa-chevron-right pe-1 primary-color"></i> Home</a></li>
+                            <li class="pb-1"><a href="{{ route('gardeners.index') }}"><i class="fa-solid fa-chevron-right pe-1 primary-color"></i>Contact a Gardener</a></li>
                         </ul>
                     </div>
                 </div>
