@@ -19,8 +19,11 @@
                     <li><a class="text-white" href="/">Home</a></li>
                 {{-- Gardener buttons --}}
                 @auth
+                @if(Auth::user()->role === 'admin')
+                    <li><a class="text-white" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                @endif
                 @if(Auth::user()->role === 'gardener')
-                <li><a class="text-white" href="{{ route('gardeners.index') }}">My Requests</a></li>
+                    <li><a class="text-white" href="{{ route('gardeners.index') }}">My Requests</a></li>
                 @else
                     <li><a class="text-white" href="{{ route('gardeners.index') }}">Contact a Gardener</a></li>
                 @endif

@@ -10,6 +10,11 @@
     <ul class="info py-4 mt-65 bor-top bor-bottom">
     @auth
         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'seller')
+            @if(auth()->user()->role === 'admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">🛠 Admin Dashboard</a>
+                </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.products.index') }}">🛠 Manage Products</a>
             </li>

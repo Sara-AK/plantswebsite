@@ -52,14 +52,19 @@
             </div>
         </form>
 
-        <!-- Plants Listing -->
+        <!-- 🌱 Plants Listing -->
         <div class="row g-4">
             @forelse ($plants as $plant)
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".2s">
                     <div class="donation__item bor">
                         <div class="image mb-30">
-                            <img src="{{ is_array($plant->pictures) ? $plant->pictures[0] : json_decode($plant->pictures, true)[0] ?? 'default-image.jpg' }}"
-                                 alt="{{ $plant->name }}" >
+                            @php
+                                $pictures = json_decode($plant->pictures, true);
+                            @endphp
+
+                            <img src="{{ isset($pictures[0]) ? asset($pictures[0]) : asset('storage/plants/default-image.jpg') }}"
+                                 alt="{{ $plant->name }}"
+                                 class="plant-image">
                         </div>
                         <h3><a href="{{ route('public.plants.show', $plant->id) }}">{{ $plant->name }}</a></h3>
                         <p>{{ \Illuminate\Support\Str::limit($plant->description, 100) }}</p>
@@ -82,4 +87,15 @@
         </div>
     </div>
 </section>
+
+<!-- 🖼 Custom Styles for Image Sizing -->
+<style>
+    .plant-image {
+        width: 100%;        /* Ensures the image takes full width */
+        height: 250px;      /* Fixed height */
+        object-fit: cover;  /* Crop instead of stretching */
+        border-radius: 10px; /* Optional: Rounds the corners */
+    }
+</style>
+
 @endsection
