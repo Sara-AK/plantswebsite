@@ -20,8 +20,11 @@
 
                     {{-- Gardener Buttons --}}
                     @auth
-                        @if(Auth::user()->role === 'gardener')
-                            <li><a class="text-white" href="{{ route('gardeners.index') }}">My Requests</a></li>
+                        @if(Auth::user()->role === 'admin')
+                    <li><a class="text-white" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                @endif
+                @if(Auth::user()->role === 'gardener')
+                                <li><a class="text-white" href="{{ route('gardeners.index') }}">My Requests</a></li>
                         @else
                             <li><a class="text-white" href="{{ route('gardeners.index') }}">Contact a Gardener</a></li>
                         @endif

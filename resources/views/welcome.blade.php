@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('title', 'Dashboard Page')
 @section('content')
+<style>
+    .product-image {
+        width: 100%;
+        height: 350px; /* Same height as plants */
+        object-fit: cover; /* Ensures proper cropping */
+        border-radius: 10px; /* Optional: rounded edges */
+    }
+</style>
+
+
 
     <!-- Banner area start here -->
     <section class="banner-three banner-five">
@@ -196,8 +206,13 @@
     <div class="col-lg-4 col-md-6 wow fadeInDown" data-wow-duration="0.6s" data-wow-delay=".2s">
         <div class="donation__item blog-two__item bor view__item">
             <div class="blog-two__image mb-30">
+                @php
+                    $pictures = json_decode($product->pictures, true);
+                    $imagePath = isset($pictures[0]) ? asset($pictures[0]) : asset('storage/plantproducts/default-product.jpg');
+                @endphp
+
                 <div class="image">
-                    <img src="" alt="{{ $product->name }}">
+                    <img src="{{ $imagePath }}" alt="{{ $product->name }}" class="product-image">
                 </div>
             </div>
             <h3>{{ $product->name }}</h3>
