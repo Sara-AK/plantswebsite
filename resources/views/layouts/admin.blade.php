@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <!-- Select2 CSS (Only Once) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 
     @stack('styles')
 </head>
@@ -52,8 +52,8 @@
     <!-- jQuery (Only Once) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Select2 JS (Only Once) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -74,50 +74,58 @@
     <!-- App Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Initialize Select2 -->
+    <!-- Initialize Select2 with Correct Placeholders -->
     <script>
-        $(document).ready(function () {
-            $('#categories, #regions').select2({
-                theme: 'bootstrap4', // Use AdminLTE Bootstrap 4 theme
-                placeholder: "Select options",
+        $(document).ready(function() {
+            $('#categories').select2({
+                placeholder: "Select Categories",
+                allowClear: true,
+                width: '100%'
+            });
+
+            $('#regions').select2({
+                placeholder: "Select Regions",
                 allowClear: true,
                 width: '100%'
             });
         });
     </script>
+
     <style>
         .bg-dark-green {
             background-color: #4baf47 !important;
             color: white !important;
         }
+
         .table-dark-green {
             border: 0.5px solid #04240c;
         }
+
         .btn-success {
             background-color: #2d6a32 !important;
             border-color: #4baf47 !important;
         }
+
         .btn-success:hover {
             background-color: #4baf47 !important;
         }
+
         .rounded {
             border-radius: 10px !important;
         }
+
         .rounded-pill {
             border-radius: 50px !important;
         }
+
         .img-thumbnail {
             border-radius: 50% !important;
             object-fit: cover;
         }
     </style>
 
-    <!-- Ensure jQuery & Bootstrap JS are included -->
-    <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
-
     @stack('scripts')
+
 </body>
 
 </html>

@@ -15,7 +15,8 @@
             <div class="card shadow-sm rounded mb-4">
                 <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">Add Plant</h3>
-                    <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#addPlantForm">
+                    <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse"
+                        data-bs-target="#addPlantForm">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
@@ -27,11 +28,13 @@
                             <div class="row mb-3">
                                 <div class="form-group col-md-6">
                                     <label>Plant Name</label>
-                                    <input type="text" class="form-control rounded" name="name" placeholder="Enter plant name" required>
+                                    <input type="text" class="form-control rounded" name="name"
+                                        placeholder="Enter plant name" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Care Difficulty</label>
-                                    <input type="text" class="form-control rounded" name="caredifficulty" placeholder="Enter care difficulty" required>
+                                    <input type="text" class="form-control rounded" name="caredifficulty"
+                                        placeholder="Enter care difficulty" required>
                                 </div>
                             </div>
 
@@ -48,26 +51,32 @@
 
                             <div class="form-group mb-3">
                                 <label>Plant Image (URL)</label>
-                                <input type="text" class="form-control rounded" name="pictures" placeholder="Enter Image URL" required>
+                                <input type="text" class="form-control rounded" name="pictures"
+                                    placeholder="Enter Image URL" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="categories">Categories</label>
-                                <select name="categories[]" id="categories" class="form-control select2" multiple="multiple" data-placeholder="Select categories" required>
-                                    @foreach($allCategories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
+
+                            <div class="form-row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label>Categories</label>
+                                    <select name="categories[]" id="categories" class="form-control select2"
+                                        multiple="multiple" placeholder="Select categories" required>
+                                        @foreach ($allCategories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Regions</label>
+                                    <select name="regions[]" id="regions" class="form-control select2" multiple="multiple"
+                                        placeholder="Select regions" required>
+                                        @foreach ($allRegions as $region)
+                                            <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="regions">Regions</label>
-                                <select name="regions[]" id="regions" class="form-control select2" multiple="multiple" data-placeholder="Select regions" required>
-                                    @foreach($allRegions as $region)
-                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
 
 
 
@@ -83,7 +92,8 @@
             <div class="card shadow-sm rounded">
                 <div class="card-header bg-dark-green d-flex justify-content-between align-items-center rounded">
                     <h3 class="card-title text-white">All Plants</h3>
-                    <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse" data-bs-target="#plantsTable">
+                    <button type="button" class="btn btn-tool text-white" data-bs-toggle="collapse"
+                        data-bs-target="#plantsTable">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
@@ -106,7 +116,8 @@
                             @foreach ($plants as $plant)
                                 <tr>
                                     <td>{{ $plant->name }}</td>
-                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->description, 50) }}</td>
+                                    <td class="d-none d-lg-table-cell">
+                                        {{ \Illuminate\Support\Str::limit($plant->description, 50) }}</td>
                                     <td class="d-none d-md-table-cell">
                                         @foreach ($plant->categories as $category)
                                             <span class="badge bg-success rounded-pill">{{ $category->name }}</span>
@@ -119,20 +130,29 @@
                                     </td>
                                     <td>
                                         @php
-                                            $pictures = is_array($plant->pictures) ? $plant->pictures : (is_string($plant->pictures) ? json_decode($plant->pictures, true) : []);
+                                            $pictures = is_array($plant->pictures)
+                                                ? $plant->pictures
+                                                : (is_string($plant->pictures)
+                                                    ? json_decode($plant->pictures, true)
+                                                    : []);
                                         @endphp
 
                                         @if (!empty($pictures))
-                                            <img src="{{ $pictures[0] }}" alt="{{ $plant->name }}" class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;">
+                                            <img src="{{ $pictures[0] }}" alt="{{ $plant->name }}"
+                                                class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;">
                                         @else
                                             <span class="text-muted">No Image</span>
                                         @endif
                                     </td>
-                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->caredifficulty, 50) }}</td>
-                                    <td class="d-none d-lg-table-cell">{{ \Illuminate\Support\Str::limit($plant->caretips, 50) }}</td>
+                                    <td class="d-none d-lg-table-cell">
+                                        {{ \Illuminate\Support\Str::limit($plant->caredifficulty, 50) }}</td>
+                                    <td class="d-none d-lg-table-cell">
+                                        {{ \Illuminate\Support\Str::limit($plant->caretips, 50) }}</td>
                                     <td>
-                                        <a href="{{ route('admin.plants.edit', $plant->id) }}" class="btn btn-warning btn-sm rounded">Edit</a>
-                                        <form action="{{ route('admin.plants.destroy', $plant->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                                        <a href="{{ route('admin.plants.edit', $plant->id) }}"
+                                            class="btn btn-warning btn-sm rounded">Edit</a>
+                                        <form action="{{ route('admin.plants.destroy', $plant->id) }}" method="POST"
+                                            class="d-inline" onsubmit="return confirm('Are you sure?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm rounded">Delete</button>
