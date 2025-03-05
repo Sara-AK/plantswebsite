@@ -24,7 +24,6 @@
 
                 <!-- Category Dropdown -->
                 <div class="col-md-3">
-                    <label for="category" class="form-label fw-bold"></label>
                     <select id="category" name="category" class="form-control">
                         <option value="">All Categories</option>
                         @foreach ($categories as $category)
@@ -37,17 +36,16 @@
 
                 <!-- Sorting -->
                 <div class="col-md-3">
-                    <label for="sort" class="form-label fw-bold"></label>
                     <select id="sort" name="sort" class="form-control">
-                        <option value=""></option>
-                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                        <option value="asc" {{ request('sort', 'asc') == 'asc' ? 'selected' : '' }}>Name (A-Z)</option>
                         <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Name (Z-A)</option>
                     </select>
                 </div>
 
+
                 <!-- Submit Button -->
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100 mt-4">Apply</button>
+                    <button type="submit" class="btn btn-success w-100 mt-4">Apply</button>
                 </div>
             </div>
         </form>
@@ -59,7 +57,7 @@
                     <div class="donation__item bor">
                         <div class="image mb-30">
                             @php
-                                $pictures = json_decode($plant->pictures, true);
+                                $pictures = $plant->pictures;
                             @endphp
 
                             <img src="{{ isset($pictures[0]) ? asset($pictures[0]) : asset('storage/plants/default-image.jpg') }}"
