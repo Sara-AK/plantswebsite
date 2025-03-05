@@ -24,9 +24,9 @@
                             <ul class="list-inline">
                                 @foreach ($plant->categories as $category)
                                     <li class="list-inline-item">
-                                        <a href="{{ route('public.categories.show', $category->id) }}" class="btn-one">
+                                        <p class="btn-one">
                                             <span>{{ $category->name }}</span>
-                                        </a>
+                                        </p>
                                     </li>
                                 @endforeach
                             </ul>
@@ -34,9 +34,9 @@
                             <ul class="list-inline">
                                 @foreach ($plant->regions as $region)
                                     <li class="list-inline-item">
-                                        <a href="{{ route('public.categories.show', $region->id) }}" class="btn-one">
+                                        <p class="btn-one">
                                             <span>{{ $region->name }}</span>
-                                        </a>
+                                        </p>
                                     </li>
                                 @endforeach
                             </ul>

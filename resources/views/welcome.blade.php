@@ -20,13 +20,10 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">Plant Haven</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">Grow, Connect, and Thrive <br> with Green Haven
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
-                                <span>Discover with us</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -34,13 +31,9 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg2.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">Plant Haven</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">Bringing Plant Lovers and Experts  <br> Together
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
-                                <span>Discover with us</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -48,13 +41,9 @@
                     <div class="slide-bg" data-background="assets/images/banner/banner-five-bg3.jpg"></div>
                     <div class="container">
                         <div class="banner-three__content banner-five__content">
-                            <h4 data-animation="fadeInUp" data-delay="0.5s">The Green Canvas</h4>
-                            <h1 data-animation="fadeInUp" data-delay="0.65s">The Healing Power <br> of Gardening
+                            <h4 data-animation="fadeInUp" data-delay="0.5s">Plant Haven</h4>
+                            <h1 data-animation="fadeInUp" data-delay="0.65s">Discover, Learn, and Share the Joy <br> of Gardening
                             </h1>
-                            <a href="about.html" class="btn-one-white mt-50" data-animation="fadeInUp" data-delay="0.9s">
-                                <span>Discover with us</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -143,8 +132,6 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="about.html" class="btn-one mt-35"><span>More About us</span> <i
-                                class="fa-solid fa-angles-right"></i></a>
                     </div>
                 </div>
             </div>

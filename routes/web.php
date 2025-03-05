@@ -163,6 +163,9 @@ Route::middleware(['auth'])->group(function () {
     // Accept a request (Only gardeners should be able to do this)
     Route::post('/requests/{id}/accept', [GardenerRequestController::class, 'acceptRequest'])
         ->name('requests.accept');
+    Route::post('/gardener/request/{id}/accept', [GardenerController::class, 'acceptRequest'])
+        ->name('request.accept');
+
 });
 
 

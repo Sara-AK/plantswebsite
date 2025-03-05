@@ -33,6 +33,22 @@ class GardenerController extends Controller
 
         return view('gardeners.index', compact('gardeners', 'requests'));
     }
+    public function acceptRequest($id)
+    {
+        $request = GardenerRequest::findOrFail($id);
+
+        // Ensure the logged-in gardener is the one being requested
+        if ($request->gardener_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+
+        // Update request status to 'accepted'
+        $request->status = 'accepted';
+        $request->save();
+
+        return redirect()->back()->with('success', 'Request accepted! You can now chat with the user.');
+    }
+
 
 
 }

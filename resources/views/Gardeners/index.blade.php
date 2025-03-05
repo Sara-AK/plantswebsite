@@ -10,10 +10,22 @@
             @foreach($requests as $request)
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ $request->user->name }} wants to contact you.
-                <a href="{{ route('chat.index', $request->user->id) }}" class="btn btn-success btn-sm">Go to Chat</a>
+
+                @if($request->status === 'accepted')
+                    <a href="{{ route('chat.index', $request->user->id) }}" class="btn btn-success btn-sm">
+                        Go to Chat
+                    </a>
+                @else
+                    <form action="{{ route('request.accept', $request->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Accept Request
+                        </button>
+                    </form>
+                @endif
             </li>
         @endforeach
-                </ul>
+        </ul>
 
     @else
         <h3>Available Gardeners</h3>
@@ -43,7 +55,7 @@
                 @endif
             </li>
         @endforeach
-                        </ul>
+        </ul>
     @endif
 </div>
 @endsection

@@ -2,16 +2,9 @@
     <div class="header-section">
         <div class="container">
             <div class="header-wrapper">
-                {{-- Sidebar for large screens --}}
-                <div class="side-bars d-none d-xl-block">
+                {{-- Sidebar --}}
+                <div class="side-bars">
                     <i id="openButton" class="text-white fa-solid fa-bars"></i>
-                </div>
-
-                {{-- Logo --}}
-                <div class="logo-menu d-block d-xl-none">
-                    <a href="{{ url('/') }}" class="logo">
-                        <img src="{{ asset('assets/images/logo/logo-light.svg') }}" alt="logo">
-                    </a>
                 </div>
 
                 {{-- Main Navigation --}}
