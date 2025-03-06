@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Plant;
 use App\Models\PlantCategory;
 use App\Models\Region;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PlantController extends Controller
 {
@@ -53,13 +56,13 @@ class PlantController extends Controller
 
     public function publicShow($id)
     {
-        $plant = Plant::findOrFail($id); // Fetch plant by ID, return 404 if not found
+        $plant = Plant::findOrFail($id);
+        $relatedProducts = $plant->products ?? collect();
+        $comments = $plant->comments()->latest()->get();
 
-        // Fetch related products (products linked to this plant)
-        $relatedProducts = $plant->products ?? collect(); // Ensures it's never null
-
-        return view('public.plants.show', compact('plant', 'relatedProducts'));
+        return view('public.plants.show', compact('plant', 'relatedProducts', 'comments'));
     }
+
 
     public function showSingle($id)
     {
@@ -164,6 +167,21 @@ class PlantController extends Controller
         $plant->regions()->sync($request->regions);
 
         return redirect()->route('admin.plants.index')->with('success', 'Plant updated successfully.');
+    }
+
+    public function addComment(Request $request, $plantId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500'
+        ]);
+
+        Comment::create([
+            'plant_id' => $plantId,
+            'user_id' => Auth::id(),
+            'content' => $request->content
+        ]);
+
+        return back()->with('success', 'Comment added!');
     }
 
 

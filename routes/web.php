@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GardenerRequestController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -49,6 +50,9 @@ Route::get('/products', [PlantProductController::class, 'publicIndex'])->name('p
 Route::get('/products/{product}', [PlantProductController::class, 'publicShow'])->name('public.products.show');
 
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::post('/plants/{plant}/comment', [PlantController::class, 'addComment'])->name('plants.comment');
+Route::post('/plants/{plant}/comments', [CommentController::class, 'store'])->name('comments.store');
+
 
 
 

@@ -29,6 +29,11 @@ class Plant extends Model
     {
         return $this->hasMany(PlantProduct::class, 'plant_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
 }
 

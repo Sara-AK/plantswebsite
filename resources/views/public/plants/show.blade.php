@@ -62,7 +62,8 @@
 
                                             <!-- View Product Button -->
                                             <div class="text-center mt-3">
-                                                <a href="{{ route('public.products.show', $product->id) }}" class="btn-one">
+                                                <a href="{{ route('public.products.show', $product->id) }}"
+                                                    class="btn-one">
                                                     <span>View Product</span>
                                                     <i class="fa-solid fa-arrow-right"></i>
                                                 </a>
@@ -76,21 +77,61 @@
 
                     <!-- End Related Products Section -->
 
+                    <!-- Comments Section -->
+                    <div class="mt-40">
+                        <h4 class="mb-20">Comments</h4>
+
+                        <!-- Display Existing Comments -->
+                        <div class="mb-4">
+                            @forelse($plant->comments as $comment)
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <strong>{{ $comment->user->name }}</strong> <span
+                                            class="text-muted">({{ $comment->created_at->diffForHumans() }})</span>
+                                        <p class="mt-2">{{ $comment->content }}</p>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-muted">No comments yet. Be the first to comment!</p>
+                            @endforelse
+                        </div>
+
+                        <!-- Add New Comment Form (Only for Logged-in Users) -->
+                        @auth
+                            <form action="{{ route('comments.store', $plant->id) }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <textarea name="content" class="form-control" rows="3" placeholder="Write a comment..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success"
+                                    style="background-color: #4BAF47; border: none;">Post Comment</button>
+                            </form>
+                        @else
+                            <p class="text-muted">You must be logged in to comment.</p>
+                        @endauth
+                    </div>
+                    <!-- End Comments Section -->
+
+
                 </div>
 
                 <!-- Image Section - Right Half -->
                 <div class="col-lg-6">
                     <div class="image">
                         @php
-                            $pictures = is_array($plant->pictures) ? $plant->pictures : json_decode($plant->pictures, true);
+                            $pictures = is_array($plant->pictures)
+                                ? $plant->pictures
+                                : json_decode($plant->pictures, true);
                         @endphp
 
                         @if ($pictures)
                             @foreach ($pictures as $picture)
-                                <img src="{{ $picture }}" alt="{{ $plant->name }}" class="img-fluid rounded mb-3" style="max-width: 300px ; height: auto;">
+                                <img src="{{ $picture }}" alt="{{ $plant->name }}" class="img-fluid rounded mb-3"
+                                    style="max-width: 300px ; height: auto;">
                             @endforeach
                         @else
-                            <img src="default-image.jpg" alt="{{ $plant->name }}" class="img-fluid rounded" style="max-width: 300px; height: auto;">
+                            <img src="default-image.jpg" alt="{{ $plant->name }}" class="img-fluid rounded"
+                                style="max-width: 300px; height: auto;">
                         @endif
                     </div>
                 </div>
